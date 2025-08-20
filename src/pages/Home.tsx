@@ -1,5 +1,6 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import Avatar from '../components/Avatar';
+import Status from '../components/Status';
 
 const Home: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const Home: React.FC = () => {
           paddingTop: '20px' 
         }}>
          <Avatar/>
+         <Status/>
         </div>
       </IonContent>
     </IonPage>
