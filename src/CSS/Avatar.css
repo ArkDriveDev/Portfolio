@@ -3,7 +3,7 @@
   margin: 40px;
   transition: all 0.3s ease;
   border: 4px solid transparent;
-  background: linear-gradient(45deg, #ff6b6b, #b84ecd, #162427, #96ceb4);
+  background: linear-gradient(45deg, #faf6f6, #0a080a, #162427, #96ceb4);
   background-size: 300% 300%;
   animation: gradientShift 3s ease infinite;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
@@ -18,7 +18,7 @@
   left: -3px;
   right: -3px;
   bottom: -3px;
-  background: linear-gradient(45deg, #ff6b6b, #a94ecd, #142327, #96ceb4);
+  background: linear-gradient(45deg, #ff6b6b, #98e6f0, #142327, #96ceb4);
   background-size: 300% 300%;
   animation: gradientShift 3s ease infinite;
   z-index: -1;

@@ -14,7 +14,7 @@ const Home: React.FC = () => {
       <IonContent 
         fullscreen 
         style={{ 
-          '--background': '#111522ff',
+          '--background': '#070708ff',
           '--ion-background-color': '#052c3bff' 
         }}
       >
