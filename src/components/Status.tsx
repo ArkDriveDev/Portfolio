@@ -25,15 +25,15 @@ const Status: React.FC = () => {
             <IonCol className="stats-col left-col">
               <div className="stat-item">
                 <span>Appearance:</span>
-                <span className="rank">A rank</span>
+                <span className="rank">Good</span>
               </div>
               <div className="stat-item">
                 <span>Stamina:</span>
-                <span className="rank">A rank</span>
+                <span className="rank">High</span>
               </div>
               <div className="stat-item">
                 <span>Energy Level:</span>
-                <span className="rank">A rank</span>
+                <span className="rank">High</span>
               </div>
             </IonCol>
 
@@ -41,15 +41,15 @@ const Status: React.FC = () => {
             <IonCol className="stats-col right-col">
               <div className="stat-item">
                 <span>Programming Skills:</span>
-                <span className="rank">B rank</span>
+                <span className="rank">Average</span>
               </div>
               <div className="stat-item">
                 <span>Diligence:</span>
-                <span className="rank">A rank</span>
+                <span className="rank">Good</span>
               </div>
               <div className="stat-item">
                 <span>Creativity:</span>
-                <span className="rank">B rank</span>
+                <span className="rank">Average</span>
               </div>
             </IonCol>
           </IonRow>
