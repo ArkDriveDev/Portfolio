@@ -1,0 +1,199 @@
+/* Avatar.css */
+.avatar {
+  margin: 0 auto;
+  transition: all 0.3s ease;
+  border: 4px solid transparent;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  background-size: 300% 300%;
+  animation: gradientShift 3s ease infinite;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  position: relative;
+  overflow: hidden;
+}
+
+.avatar::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  background-size: 300% 300%;
+  animation: gradientShift 3s ease infinite;
+  z-index: -1;
+  border-radius: 50%;
+  opacity: 0.7;
+}
+
+/* Size classes */
+.avatar.small {
+  --size: 80px;
+  width: var(--size);
+  height: var(--size);
+}
+
+.avatar.medium {
+  --size: 140px;
+  width: var(--size);
+  height: var(--size);
+}
+
+.avatar.large {
+  --size: 200px;
+  width: var(--size);
+  height: var(--size);
+}
+
+.avatar img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  border: 3px solid white;
+}
+
+/* Hover effects */
+.avatar:hover {
+  transform: translateY(-8px) scale(1.08);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.avatar:hover img {
+  transform: scale(1.12);
+  filter: brightness(1.1);
+}
+
+.avatar:active {
+  transform: translateY(-3px) scale(1.04);
+}
+
+/* Special effects */
+.avatar.pulse {
+  animation: pulse 2s infinite;
+}
+
+.avatar.glowing {
+  box-shadow: 0 0 25px rgba(79, 205, 196, 0.7),
+              0 0 50px rgba(79, 205, 196, 0.5),
+              0 0 75px rgba(79, 205, 196, 0.3);
+}
+
+/* Status indicator */
+.status-indicator {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 3px solid white;
+  background-color: #4cd964; /* online */
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.status-offline {
+  background-color: #8e8e93; /* offline */
+}
+
+.status-busy {
+  background-color: #ff3b30; /* busy */
+}
+
+.status-away {
+  background-color: #ffcc00; /* away */
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  }
+  50% {
+    transform: scale(1.06);
+    box-shadow: 0 18px 40px rgba(79, 205, 196, 0.5);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Focus states for accessibility */
+.avatar:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 205, 196, 0.5);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .avatar,
+  .avatar::before,
+  .avatar img {
+    animation: none;
+    transition: none;
+  }
+  
+  .avatar.pulse {
+    animation: none;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .avatar.small {
+    --size: 70px;
+  }
+  
+  .avatar.medium {
+    --size: 120px;
+  }
+  
+  .avatar.large {
+    --size: 160px;
+  }
+  
+  .status-indicator {
+    width: 16px;
+    height: 16px;
+    bottom: 6px;
+    right: 6px;
+  }
+}
+
+@media (max-width: 480px) {
+  .avatar.small {
+    --size: 60px;
+  }
+  
+  .avatar.medium {
+    --size: 100px;
+  }
+  
+  .avatar.large {
+    --size: 140px;
+  }
+  
+  .status-indicator {
+    width: 14px;
+    height: 14px;
+    bottom: 4px;
+    right: 4px;
+    border-width: 2px;
+  }
+}
