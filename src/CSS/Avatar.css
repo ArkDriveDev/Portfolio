@@ -1,9 +1,9 @@
 /* Avatar.css */
 .avatar {
-  margin: 60px;
+  margin: 40px;
   transition: all 0.3s ease;
   border: 4px solid transparent;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  background: linear-gradient(45deg, #ff6b6b, #b84ecd, #162427, #96ceb4);
   background-size: 300% 300%;
   animation: gradientShift 3s ease infinite;
   box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
@@ -18,7 +18,7 @@
   left: -3px;
   right: -3px;
   bottom: -3px;
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+  background: linear-gradient(45deg, #ff6b6b, #a94ecd, #142327, #96ceb4);
   background-size: 300% 300%;
   animation: gradientShift 3s ease infinite;
   z-index: -1;
@@ -51,7 +51,7 @@
   height: 100%;
   border-radius: 50%;
   transition: transform 0.3s ease, filter 0.3s ease;
-  border: 3px solid white;
+  border: 3px solid rgb(243, 241, 241);
 }
 
 /* Hover effects */
@@ -91,7 +91,7 @@
   border: 3px solid white;
   background-color: #4cd964; /* online */
   z-index: 10;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(230, 227, 227, 0.3);
 }
 
 .status-offline {
@@ -122,7 +122,7 @@
 @keyframes pulse {
   0% {
     transform: scale(1);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 12px 35px rgba(151, 79, 79, 0.2);
   }
   50% {
     transform: scale(1.06);

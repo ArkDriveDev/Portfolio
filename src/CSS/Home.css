@@ -1,0 +1,29 @@
+.avatar-status-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 60px 0; /* Keep vertical margin but remove horizontal */
+}
+
+.status-card-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scaleX(0);
+  transform-origin: center;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  z-index: -1; /* Place behind the avatar */
+  width: 400px; /* Increased width for better effect */
+  padding-top: 120px; /* Create space for avatar to sit on top */
+}
+
+.avatar-wrapper:hover .status-card-wrapper {
+  opacity: 1;
+  transform: translate(-50%, -50%) scaleX(1);
+}

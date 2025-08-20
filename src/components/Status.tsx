@@ -1,6 +1,14 @@
 // Status.tsx
 import React from 'react';
-import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonGrid, IonRow, IonCol } from '@ionic/react';
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonGrid,
+  IonRow,
+  IonCol
+} from '@ionic/react';
 import '../CSS/Status.css';
 
 const Status: React.FC = () => {
@@ -9,22 +17,40 @@ const Status: React.FC = () => {
       <IonCardHeader className="status-header">
         <IonCardTitle className="status-title">Status Open</IonCardTitle>
       </IonCardHeader>
-      
+
       <IonCardContent className="status-content">
         <IonGrid>
-          <IonRow>
+          <IonRow className="stats-row">
             {/* Left Side */}
-            <IonCol>
-              <div className="stat-item">Appearance: <span className="rank">A rank</span></div>
-              <div className="stat-item">Stamina: <span className="rank">S rank</span></div>
-              <div className="stat-item">Energy Level: <span className="rank">A rank</span></div>
+            <IonCol className="stats-col left-col">
+              <div className="stat-item">
+                <span>Appearance:</span>
+                <span className="rank">A rank</span>
+              </div>
+              <div className="stat-item">
+                <span>Stamina:</span>
+                <span className="rank">A rank</span>
+              </div>
+              <div className="stat-item">
+                <span>Energy Level:</span>
+                <span className="rank">A rank</span>
+              </div>
             </IonCol>
-            
+
             {/* Right Side */}
-            <IonCol>
-              <div className="stat-item">Programming skills: <span className="rank">B rank</span></div>
-              <div className="stat-item">Learning Skills: <span className="rank">A rank</span></div>
-              <div className="stat-item">Creativity: <span className="rank">B rank</span></div>
+            <IonCol className="stats-col right-col">
+              <div className="stat-item">
+                <span>Programming Skills:</span>
+                <span className="rank">B rank</span>
+              </div>
+              <div className="stat-item">
+                <span>Diligence:</span>
+                <span className="rank">A rank</span>
+              </div>
+              <div className="stat-item">
+                <span>Creativity:</span>
+                <span className="rank">B rank</span>
+              </div>
             </IonCol>
           </IonRow>
         </IonGrid>
