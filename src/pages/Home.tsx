@@ -6,7 +6,7 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Avatar App</IonTitle>
+          <IonTitle>Status: Freelancing On Students Projects</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
