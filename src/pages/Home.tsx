@@ -10,7 +10,11 @@ const Home: React.FC = () => {
           <IonTitle>Status: Freelancing On Students Projects</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent   fullscreen 
+        style={{ 
+          '--background': '#87CEEB', // Sky blue background
+          '--ion-background-color': '#87CEEB' 
+        }}>
         <div style={{ 
           display: 'flex', 
           justifyContent: 'center', 
