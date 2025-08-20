@@ -1,20 +1,22 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import './Home.css';
+import Avatar from '../components/Avatar';
 
 const Home: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Blank</IonTitle>
+          <IonTitle>Avatar App</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          paddingTop: '20px' 
+        }}>
+         <Avatar/>
+        </div>
       </IonContent>
     </IonPage>
   );
