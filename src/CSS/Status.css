@@ -1,0 +1,100 @@
+/* Status.css */
+.status-card {
+  --background: rgba(255, 255, 255, 0.1);
+  --color: white;
+  margin: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  position: relative;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.status-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3));
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+}
+
+.status-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.status-header {
+  text-align: center;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.status-title {
+  font-size: 1.5em;
+  font-weight: 600;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.status-content {
+  padding: 25px;
+}
+
+.stat-item {
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 1.1em;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.stat-item:last-child {
+  border-bottom: none;
+}
+
+.rank {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .status-card {
+    margin: 15px;
+    border-radius: 15px;
+  }
+  
+  .status-title {
+    font-size: 1.3em;
+  }
+  
+  .stat-item {
+    font-size: 1em;
+    padding: 10px 0;
+  }
+}
