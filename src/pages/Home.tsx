@@ -26,6 +26,11 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
+        
+        {/* Footer with copyright information */}
+        <div className="footer">
+          <p>© 2023 Arky Roel U. Balaga. All Rights Reserved</p>
+        </div>
       </IonContent>
     </IonPage>
   );
