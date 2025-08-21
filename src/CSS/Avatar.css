@@ -73,28 +73,28 @@
   border-radius: 50% 50% 50% 50%;
 }
 
-/* Petal labels */
-/* Petal labels */
+/* Petal labels - colored text version */
 .petal-label {
   position: absolute;
   top: 100%;
   margin-top: 10px;
-  color: white;
-  font-size: 10px; /* Reduced from 12px */
+  font-size: 10px;
   font-weight: 600;
   text-align: center;
-  padding: 4px 8px; /* Reduced padding */
+  padding: 4px 8px;
   opacity: 0;
   transition: opacity 0.5s ease;
-  pointer-events: none; /* Fixed the invalid property value */
+  pointer-events: none;
   white-space: nowrap;
   z-index: 10;
+  border-radius: 12px;
+  border: none;
+  /* Text color will be set inline based on icon type */
 }
 
 .petal-label.visible {
   opacity: 1;
 }
-
 /* Initial positions for petals */
 .p1 {
   transform: translate(-50%, -50%) rotate(0deg) translateY(-30%);
