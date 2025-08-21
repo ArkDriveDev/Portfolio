@@ -1,7 +1,124 @@
 .avatar-container {
   position: relative;
   display: inline-block;
-  margin: 40px;
+  margin: 220px;
+}
+
+/* Elegant flower pattern with transparent, pointy petals */
+.elegant-flower {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 350%;
+  height: 350%;
+  z-index: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+}
+
+.petal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 35%;
+  height: 60%;
+  background: transparent;
+  border-radius: 50% 50% 50% 50%;
+  transform-origin: bottom center;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.2) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.petal-icon {
+  width: 35%; /* Smaller size */
+  height: 35%; /* Smaller size */
+  object-fit: contain;
+  opacity: 0.85; /* Slightly transparent */
+  transform: translateY(-10%); /* Adjusted position */
+  transition: all 0.3s ease;
+}
+
+.petal:hover .petal-icon {
+  transform: translateY(-10%) scale(1.15); /* Smaller scale on hover */
+  opacity: 1;
+}
+
+.petal::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 25%;
+  width: 50%;
+  height: 60%;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3));
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  border-radius: 50% 50% 50% 50%;
+}
+
+.p1 {
+  transform: translate(-50%, -50%) rotate(0deg) translateY(-30%);
+}
+
+.p2 {
+  transform: translate(-50%, -50%) rotate(72deg) translateY(-30%);
+}
+
+.p3 {
+  transform: translate(-50%, -50%) rotate(144deg) translateY(-30%);
+}
+
+.p4 {
+  transform: translate(-50%, -50%) rotate(216deg) translateY(-30%);
+}
+
+.p5 {
+  transform: translate(-50%, -50%) rotate(288deg) translateY(-30%);
+}
+
+.flower-center-ring {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  width: 25%;
+  height: 25%;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.flower-center-ring::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 60%;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Adjust flower size based on avatar size */
+.avatar.small ~ .flower-wrapper .elegant-flower {
+  width: 140%;
+  height: 140%;
+}
+
+.avatar.medium ~ .flower-wrapper .elegant-flower {
+  width: 160%;
+  height: 160%;
+}
+
+.avatar.large ~ .flower-wrapper .elegant-flower {
+  width: 180%;
+  height: 180%;
 }
 
 .avatar {
@@ -14,6 +131,8 @@
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  z-index: 1;
+  /* Ensure avatar stays above flower pattern */
 }
 
 .avatar::before {
@@ -70,6 +189,10 @@
   filter: brightness(1.1);
 }
 
+.avatar:hover ~ .flower-wrapper .elegant-flower .petal {
+  animation: petalGlow 2s infinite;
+}
+
 .avatar:active {
   transform: translateY(-3px) scale(1.04);
 }
@@ -81,8 +204,8 @@
 
 .avatar.glowing {
   box-shadow: 0 0 25px rgba(79, 205, 196, 0.7),
-              0 0 50px rgba(79, 205, 196, 0.5),
-              0 0 75px rgba(79, 205, 196, 0.3);
+    0 0 50px rgba(79, 205, 196, 0.5),
+    0 0 75px rgba(79, 205, 196, 0.3);
 }
 
 /* Status indicator */
@@ -94,21 +217,25 @@
   height: 20px;
   border-radius: 50%;
   border: 3px solid white;
-  background-color: #4cd964; /* online */
+  background-color: #4cd964;
+  /* online */
   z-index: 10;
   box-shadow: 0 2px 8px rgba(230, 227, 227, 0.3);
 }
 
 .status-offline {
-  background-color: #8e8e93; /* offline */
+  background-color: #8e8e93;
+  /* offline */
 }
 
 .status-busy {
-  background-color: #ff3b30; /* busy */
+  background-color: #ff3b30;
+  /* busy */
 }
 
 .status-away {
-  background-color: #ffcc00; /* away */
+  background-color: #ffcc00;
+  /* away */
 }
 
 /* Hover Popover */
@@ -150,9 +277,11 @@
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -163,24 +292,41 @@
     transform: scale(1);
     box-shadow: 0 12px 35px rgba(151, 79, 79, 0.2);
   }
+
   50% {
     transform: scale(1.06);
     box-shadow: 0 18px 40px rgba(79, 205, 196, 0.5);
   }
+
   100% {
     transform: scale(1);
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
   }
 }
 
-@keyframes fadeIn {
-  from { 
-    opacity: 0; 
-    transform: translateY(10px) scale(0.8); 
+@keyframes petalGlow {
+
+  0%,
+  100% {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0) scale(1); 
+
+  50% {
+    border-color: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -190,10 +336,12 @@
     opacity: 1;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.4;
     transform: scale(1.05);
   }
+
   100% {
     opacity: 1;
     transform: scale(1);
@@ -208,14 +356,16 @@
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+
   .avatar,
   .avatar::before,
   .avatar img,
-  .hover-popover {
+  .hover-popover,
+  .petal {
     animation: none;
     transition: none;
   }
-  
+
   .avatar.pulse {
     animation: none;
   }
@@ -226,33 +376,53 @@
   .avatar-container {
     margin: 30px;
   }
-  
+
   .avatar.small {
     --size: 70px;
   }
-  
+
   .avatar.medium {
     --size: 120px;
   }
-  
+
   .avatar.large {
     --size: 160px;
   }
-  
+
+  .avatar.small ~ .flower-wrapper .elegant-flower {
+    width: 130%;
+    height: 130%;
+  }
+
+  .avatar.medium ~ .flower-wrapper .elegant-flower {
+    width: 150%;
+    height: 150%;
+  }
+
+  .avatar.large ~ .flower-wrapper .elegant-flower {
+    width: 170%;
+    height: 170%;
+  }
+
+  .petal-icon {
+    width: 30%;
+    height: 30%;
+  }
+
   .status-indicator {
     width: 16px;
     height: 16px;
     bottom: 6px;
     right: 6px;
   }
-  
+
   .hover-popover {
     font-size: 12px;
     padding: 7px 10px;
     top: -20px;
     right: -12px;
   }
-  
+
   .hover-popover::after {
     left: 12px;
   }
@@ -262,19 +432,39 @@
   .avatar-container {
     margin: 20px;
   }
-  
+
   .avatar.small {
     --size: 60px;
   }
-  
+
   .avatar.medium {
     --size: 100px;
   }
-  
+
   .avatar.large {
     --size: 140px;
   }
-  
+
+  .avatar.small ~ .flower-wrapper .elegant-flower {
+    width: 120%;
+    height: 120%;
+  }
+
+  .avatar.medium ~ .flower-wrapper .elegant-flower {
+    width: 140%;
+    height: 140%;
+  }
+
+  .avatar.large ~ .flower-wrapper .elegant-flower {
+    width: 160%;
+    height: 160%;
+  }
+
+  .petal-icon {
+    width: 25%;
+    height: 25%;
+  }
+
   .status-indicator {
     width: 14px;
     height: 14px;
@@ -282,14 +472,14 @@
     right: 4px;
     border-width: 2px;
   }
-  
+
   .hover-popover {
     font-size: 10px;
     padding: 4px 8px;
     top: -18px;
     right: -10px;
   }
-  
+
   .hover-popover::after {
     left: 10px;
   }
