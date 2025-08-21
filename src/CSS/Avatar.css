@@ -1,4 +1,3 @@
-/* Avatar.css */
 .avatar-container {
   position: relative;
   display: inline-block;
@@ -112,14 +111,14 @@
   background-color: #ffcc00; /* away */
 }
 
-/* Hover Popover - Positioned higher */
+/* Hover Popover */
 .hover-popover {
   position: absolute;
-  top: -25px; /* Changed from -15px to -25px to move it higher */
+  top: -25px;
   right: -25px;
   background: linear-gradient(45deg, #ff6b6b, #98e6f0, #96ceb4);
   background-size: 300% 300%;
-  animation: gradientShift 3s ease infinite;
+  animation: gradientShift 3s ease infinite, blinkFade 2s ease-in-out infinite;
   color: white;
   padding: 8px 12px;
   border-radius: 20px;
@@ -128,7 +127,6 @@
   white-space: nowrap;
   z-index: 20;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  animation: fadeIn 0.3s ease-in;
   border: 2px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
@@ -186,6 +184,22 @@
   }
 }
 
+/* NEW Blinking/Fading Popover Animation */
+@keyframes blinkFade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 /* Focus states for accessibility */
 .avatar:focus {
   outline: none;
@@ -235,7 +249,7 @@
   .hover-popover {
     font-size: 12px;
     padding: 7px 10px;
-    top: -20px; /* Adjusted for mobile */
+    top: -20px;
     right: -12px;
   }
   
@@ -272,7 +286,7 @@
   .hover-popover {
     font-size: 10px;
     padding: 4px 8px;
-    top: -18px; /* Adjusted for mobile */
+    top: -18px;
     right: -10px;
   }
   
