@@ -1,5 +1,4 @@
-// Avatar.tsx
-import React from 'react';
+import React, { useState } from 'react';
 import { IonAvatar } from '@ionic/react';
 import '../CSS/Avatar.css';
 import Avatarpic from './images/Avatar.jpg';
@@ -13,6 +12,7 @@ interface AvatarProps {
   status?: 'online' | 'offline' | 'busy' | 'away';
   pulse?: boolean;
   glowing?: boolean;
+  showHoverPrompt?: boolean;
 }
 
 const Avatar: React.FC<AvatarProps> = ({
@@ -23,19 +23,24 @@ const Avatar: React.FC<AvatarProps> = ({
   onClick,
   status,
   pulse = false,
-  glowing = false
+  glowing = false,
+  showHoverPrompt = true
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
   const sizeClass = `avatar ${size}`;
   const pulseClass = pulse ? 'pulse' : '';
   const glowingClass = glowing ? 'glowing' : '';
   const statusClass = status ? `status-${status}` : '';
 
   return (
-    <div style={{ position: 'relative', display: 'inline-block' }}>
+    <div 
+      className="avatar-container"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
       <IonAvatar
         className={`${sizeClass} ${pulseClass} ${glowingClass} ${className}`}
         onClick={onClick}
-        style={onClick ? { cursor: 'pointer' } : {}}
       >
         <img
           src={imageUrl}
@@ -49,6 +54,12 @@ const Avatar: React.FC<AvatarProps> = ({
       
       {status && (
         <div className={`status-indicator ${statusClass}`} />
+      )}
+      
+      {showHoverPrompt && !isHovered && (
+        <div className="hover-popover">
+          Hover me
+        </div>
       )}
     </div>
   );
