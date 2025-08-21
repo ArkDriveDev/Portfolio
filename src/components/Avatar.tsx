@@ -47,7 +47,7 @@ const Avatar: React.FC<AvatarProps> = ({
           alt={altText}
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            target.src = 'assets/images/Avatar.png';
+            target.src = Avatarpic;
           }}
         />
       </IonAvatar>
