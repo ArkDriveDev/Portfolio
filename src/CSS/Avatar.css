@@ -15,7 +15,6 @@
   z-index: 0;
   pointer-events: none;
   filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
-  /* Remove the global rotation animation */
 }
 
 .petal {
@@ -34,8 +33,7 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  /* Add transition for smooth rotation */
-  transition: transform 1.5s ease-in-out;
+  animation: spinFlower 150s linear infinite;
 }
 
 .petal-icon {
@@ -45,11 +43,13 @@
   opacity: 0.85;
   transform: translateY(-10%);
   transition: all 0.3s ease;
+  animation: counterSpin 150s linear infinite;
 }
 
 .petal:hover .petal-icon {
   transform: translateY(-10%) scale(1.15);
   opacity: 1;
+  animation-play-state: paused;
 }
 
 .petal::before {
@@ -84,6 +84,33 @@
 .p5 {
   transform: translate(-50%, -50%) rotate(288deg) translateY(-30%);
 }
+
+/* Continuous rotation animation */
+@keyframes spinFlower {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--start-rot, 0deg)) translateY(-30%);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(calc(var(--start-rot, 0deg) + 360deg)) translateY(-30%);
+  }
+}
+
+/* Counter-rotation for icons to keep them upright */
+@keyframes counterSpin {
+  0% {
+    transform: translateY(-10%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-10%) rotate(-360deg);
+  }
+}
+
+/* Set custom properties for each petal's starting rotation */
+.p1 { --start-rot: 0deg; }
+.p2 { --start-rot: 72deg; }
+.p3 { --start-rot: 144deg; }
+.p4 { --start-rot: 216deg; }
+.p5 { --start-rot: 288deg; }
 
 /* Remove the center ring completely */
 .flower-center-ring {
@@ -174,7 +201,7 @@
 }
 
 .avatar:hover ~ .flower-wrapper .elegant-flower .petal {
-  animation: petalGlow 2s infinite;
+  animation: petalGlow 2s infinite, spinFlower 150s linear infinite;
 }
 
 .avatar:active {
@@ -225,7 +252,7 @@
   right: -25px;
   background: linear-gradient(45deg, #ff6b6b, #98e6f0, #96ceb4);
   background-size: 300% 300%;
-  animation: gradientShift 3s ease infinite, blinkFade 2s ease-in-out infinite;
+  animation: gradientShift 3s ease infinite, blinkFade 极s ease-in-out infinite;
   color: white;
   padding: 8px 12px;
   border-radius: 20px;
@@ -275,7 +302,7 @@
 
   50% {
     transform: scale(1.06);
-    box-shadow: 0 18px 40px rgba(79, 205, 196, 0.5);
+    box-shadow: 0 18px 40px rgba(79, 205, 196, 极.5);
   }
 
   100% {
@@ -333,8 +360,9 @@
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-  .petal {
-    transition: none;
+  .petal,
+  .petal-icon {
+    animation: none !important;
   }
   
   .avatar,

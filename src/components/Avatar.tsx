@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { IonAvatar } from '@ionic/react';
 import '../CSS/Avatar.css';
 
@@ -19,26 +19,11 @@ const petalIcons = [
 ];
 
 const Avatar: React.FC = () => {
-  const [petals, setPetals] = useState(petalIcons);
-
-  // Rotate petals clockwise every 5s
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPetals((prev) => {
-        const last = prev[prev.length - 1];
-        const rest = prev.slice(0, -1);
-        return [last, ...rest]; // shift right = clockwise
-      });
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div className="avatar-container">
       <div className="flower-wrapper">
         <div className="elegant-flower">
-          {petals.map((icon, i) => (
+          {petalIcons.map((icon, i) => (
             <div key={i} className={`petal p${i + 1}`}>
               <img src={icon.src} alt={icon.alt} className="petal-icon" />
             </div>
