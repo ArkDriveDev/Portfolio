@@ -15,6 +15,7 @@
   z-index: 0;
   pointer-events: none;
   filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  /* Remove the global rotation animation */
 }
 
 .petal {
@@ -33,19 +34,21 @@
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  /* Add transition for smooth rotation */
+  transition: transform 1.5s ease-in-out;
 }
 
 .petal-icon {
-  width: 35%; /* Smaller size */
-  height: 35%; /* Smaller size */
+  width: 35%;
+  height: 35%;
   object-fit: contain;
-  opacity: 0.85; /* Slightly transparent */
-  transform: translateY(-10%); /* Adjusted position */
+  opacity: 0.85;
+  transform: translateY(-10%);
   transition: all 0.3s ease;
 }
 
 .petal:hover .petal-icon {
-  transform: translateY(-10%) scale(1.15); /* Smaller scale on hover */
+  transform: translateY(-10%) scale(1.15);
   opacity: 1;
 }
 
@@ -61,6 +64,7 @@
   border-radius: 50% 50% 50% 50%;
 }
 
+/* Initial positions for petals */
 .p1 {
   transform: translate(-50%, -50%) rotate(0deg) translateY(-30%);
 }
@@ -81,31 +85,12 @@
   transform: translate(-50%, -50%) rotate(288deg) translateY(-30%);
 }
 
+/* Remove the center ring completely */
 .flower-center-ring {
-  position: absolute;
-  top: -50%;
-  left: 50%;
-  width: 25%;
-  height: 25%;
-  border: 2px solid rgba(255, 255, 255, 0.7);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  display: none;
 }
 
-.flower-center-ring::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 60%;
-  height: 60%;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-}
-
-/* Adjust flower size based on avatar size */
+/* Rest of your CSS remains the same */
 .avatar.small ~ .flower-wrapper .elegant-flower {
   width: 140%;
   height: 140%;
@@ -132,7 +117,6 @@
   overflow: hidden;
   cursor: pointer;
   z-index: 1;
-  /* Ensure avatar stays above flower pattern */
 }
 
 .avatar::before {
@@ -218,24 +202,20 @@
   border-radius: 50%;
   border: 3px solid white;
   background-color: #4cd964;
-  /* online */
   z-index: 10;
   box-shadow: 0 2px 8px rgba(230, 227, 227, 0.3);
 }
 
 .status-offline {
   background-color: #8e8e93;
-  /* offline */
 }
 
 .status-busy {
   background-color: #ff3b30;
-  /* busy */
 }
 
 .status-away {
   background-color: #ffcc00;
-  /* away */
 }
 
 /* Hover Popover */
@@ -305,9 +285,7 @@
 }
 
 @keyframes petalGlow {
-
-  0%,
-  100% {
+  0%, 100% {
     border-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
   }
@@ -330,7 +308,6 @@
   }
 }
 
-/* NEW Blinking/Fading Popover Animation */
 @keyframes blinkFade {
   0% {
     opacity: 1;
@@ -356,12 +333,14 @@
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
-
+  .petal {
+    transition: none;
+  }
+  
   .avatar,
   .avatar::before,
   .avatar img,
-  .hover-popover,
-  .petal {
+  .hover-popover {
     animation: none;
     transition: none;
   }

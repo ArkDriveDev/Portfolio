@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { IonAvatar } from '@ionic/react';
 import '../CSS/Avatar.css';
+
+// Icons
 import Avatarpic from './images/Avatar.jpg';
 import CodingOutlineIcon from './images/Codingoutline.png';
 import IonicIcon from './images/Ionic.png';
@@ -8,87 +10,46 @@ import NodeJsIcon from './images/Nodejs.png';
 import ReactIcon from './images/React.png';
 import SupabaseIcon from './images/Supabase.png';
 
-interface AvatarProps {
-  imageUrl?: string;
-  altText?: string;
-  size?: 'small' | 'medium' | 'large';
-  className?: string;
-  onClick?: () => void;
-  status?: 'online' | 'offline' | 'busy' | 'away';
-  pulse?: boolean;
-  glowing?: boolean;
-  showHoverPrompt?: boolean;
-}
+const petalIcons = [
+  { src: CodingOutlineIcon, alt: 'Coding' },
+  { src: IonicIcon, alt: 'Ionic' },
+  { src: NodeJsIcon, alt: 'Node.js' },
+  { src: ReactIcon, alt: 'React' },
+  { src: SupabaseIcon, alt: 'Supabase' }
+];
 
-const Avatar: React.FC<AvatarProps> = ({
-  imageUrl = Avatarpic,
-  altText = 'User avatar',
-  size = 'medium',
-  className = '',
-  onClick,
-  status,
-  pulse = false,
-  glowing = false,
-  showHoverPrompt = true
-}) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const sizeClass = `avatar ${size}`;
-  const pulseClass = pulse ? 'pulse' : '';
-  const glowingClass = glowing ? 'glowing' : '';
-  const statusClass = status ? `status-${status}` : '';
+const Avatar: React.FC = () => {
+  const [petals, setPetals] = useState(petalIcons);
+
+  // Rotate petals clockwise every 5s
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPetals((prev) => {
+        const last = prev[prev.length - 1];
+        const rest = prev.slice(0, -1);
+        return [last, ...rest]; // shift right = clockwise
+      });
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div
-      className="avatar-container"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
+    <div className="avatar-container">
       <div className="flower-wrapper">
-        {/* Elegant flower pattern with icons */}
         <div className="elegant-flower">
-          <div className="petal p1">
-            <img src={CodingOutlineIcon} alt="Coding" className="petal-icon" />
-          </div>
-          <div className="petal p2">
-            <img src={IonicIcon} alt="Ionic" className="petal-icon" />
-          </div>
-          <div className="petal p3">
-            <img src={NodeJsIcon} alt="Node.js" className="petal-icon" />
-          </div>
-          <div className="petal p4">
-            <img src={ReactIcon} alt="React" className="petal-icon" />
-          </div>
-          <div className="petal p5">
-            <img src={SupabaseIcon} alt="Supabase" className="petal-icon" />
-          </div>
-          <div className="flower-center-ring"></div>
+          {petals.map((icon, i) => (
+            <div key={i} className={`petal p${i + 1}`}>
+              <img src={icon.src} alt={icon.alt} className="petal-icon" />
+            </div>
+          ))}
         </div>
 
-        {/* Avatar centered inside flower */}
-        <IonAvatar
-          className={`${sizeClass} ${pulseClass} ${glowingClass} ${className}`}
-          onClick={onClick}
-        >
-          <img
-            src={imageUrl}
-            alt={altText}
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.src = Avatarpic;
-            }}
-          />
+        {/* Avatar in center */}
+        <IonAvatar className="avatar medium">
+          <img src={Avatarpic} alt="User avatar" />
         </IonAvatar>
       </div>
-
-      {status && (
-        <div className={`status-indicator ${statusClass}`} />
-      )}
-
-      {showHoverPrompt && !isHovered && (
-        <div className="hover-popover">
-          Hover me
-        </div>
-      )}
     </div>
   );
 };
