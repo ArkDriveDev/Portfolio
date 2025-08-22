@@ -150,7 +150,7 @@ const Avatar: React.FC<AvatarProps> = ({
 
       {showHoverPrompt && !isHovered && (
         <div className="hover-popover">
-          Hover me
+          Hover here
         </div>
       )}
     </div>

@@ -36,7 +36,7 @@ const Home: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Status: Freelancing On Students Projects</IonTitle>
+          <IonTitle className="header">Status Freelancing Student Projects</IonTitle>
         </IonToolbar>
       </IonHeader>
 
