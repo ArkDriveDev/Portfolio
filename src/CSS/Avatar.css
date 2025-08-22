@@ -7,14 +7,21 @@
 /* Elegant flower pattern with transparent, pointy petals */
 .elegant-flower {
   position: absolute;
-  top: -50%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  width: 350%;
-  height: 350%;
+  width: 610%;
+  height: 610%;
   z-index: 0;
   pointer-events: none;
   filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.5));
+  transition: transform 0.3s ease;
+  transform-origin: center center;
+  /* This keeps the flower centered while allowing rotation */
+  transform: translate(-50%, -50%);
+}
+
+.elegant-flower.rotating {
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
 }
 
 .petal {
@@ -25,7 +32,7 @@
   height: 60%;
   background: transparent;
   border-radius: 50% 50% 50% 50%;
-  transform-origin: bottom center;
+  transform-origin: center center;
   clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
   border: 1px solid rgba(255, 255, 255, 0.8);
   background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.2) 100%);
@@ -33,7 +40,6 @@
   justify-content: center;
   align-items: center;
   overflow: visible;
-  animation: spinFlower 50s linear infinite;
 }
 
 .petal-content {
@@ -51,14 +57,12 @@
   object-fit: contain;
   opacity: 0.85;
   transition: all 0.3s ease;
-  animation: counterSpin 50s linear infinite;
   z-index: 2;
 }
 
 .petal:hover .petal-icon {
   transform: scale(1.15);
   opacity: 1;
-  animation-play-state: paused;
 }
 
 .petal::before {
@@ -95,6 +99,7 @@
 .petal-label.visible {
   opacity: 1;
 }
+
 /* Initial positions for petals */
 .p1 {
   transform: translate(-50%, -50%) rotate(0deg) translateY(-30%);
@@ -116,36 +121,15 @@
   transform: translate(-50%, -50%) rotate(288deg) translateY(-30%);
 }
 
-/* Continuous rotation animation */
-@keyframes spinFlower {
-  0% {
-    transform: translate(-50%, -50%) rotate(var(--start-rot, 0deg)) translateY(-30%);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(calc(var(--start-rot, 0deg) + 360deg)) translateY(-30%);
-  }
-}
-
-/* Counter-rotation for icons to keep them upright */
-@keyframes counter极in {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(-360deg);
-  }
-}
-
-/* Set custom properties for each petal's starting rotation */
-.p1 { --start-rot: 0deg; }
-.p2 { --start-rot: 72deg; }
-.p3 { --start-rot: 144deg; }
-.p4 { --start-rot: 216deg; }
-.p5 { --start-rot: 288deg; }
-
 /* Remove the center ring completely */
 .flower-center-ring {
   display: none;
+}
+
+/* Flower wrapper to position everything correctly */
+.flower-wrapper {
+  position: relative;
+  display: inline-block;
 }
 
 /* Rest of your CSS remains the same */
@@ -206,7 +190,7 @@
 }
 
 .avatar.large {
-  --size: 200极;
+  --size: 200px;
   width: var(--size);
   height: var(--size);
 }
@@ -229,10 +213,6 @@
 .avatar:hover img {
   transform: scale(1.12);
   filter: brightness(1.1);
-}
-
-.avatar:hover ~ .flower-wrapper .elegant-flower .pet极 {
-  animation: petalGlow 2s infinite, spinFlower 50s linear infinite;
 }
 
 .avatar:active {
@@ -345,12 +325,12 @@
 @keyframes petalGlow {
   0%, 100% {
     border-color: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0 5px rgba(255, 255, 255, 极.3);
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
   }
 
   50% {
     border-color: rgba(255, 255, 255, 1);
-    box-shadow: 0 极 15px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
   }
 }
 
@@ -406,6 +386,10 @@
 
   .avatar.pulse {
     animation: none;
+  }
+  
+  .elegant-flower {
+    transition: none !important;
   }
 }
 

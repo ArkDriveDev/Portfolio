@@ -67,24 +67,38 @@ const Avatar: React.FC<AvatarProps> = ({
   showHoverPrompt = true
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [rotationProgress, setRotationProgress] = useState(0);
+  const [currentPosition, setCurrentPosition] = useState(0);
+  const [isRotating, setIsRotating] = useState(false);
+  
   const sizeClass = `avatar ${size}`;
   const pulseClass = pulse ? 'pulse' : '';
   const glowingClass = glowing ? 'glowing' : '';
   const statusClass = status ? `status-${status}` : '';
 
-  // Calculate which petal is at the top based on rotation progress
+  // Control incremental rotation with 5 second pause, then quick rotation
   useEffect(() => {
-    const interval = setInterval(() => {
-      // Update rotation progress counter-clockwise (0 to 1)
-      setRotationProgress(prev => (prev - 0.001 + 1) % 1);
-    }, 60);
-
-    return () => clearInterval(interval);
+    let rotationTimeout: NodeJS.Timeout;
+    
+    const startRotation = () => {
+      // Quick rotation to next position
+      setIsRotating(true);
+      
+      setTimeout(() => {
+        setCurrentPosition(prev => (prev + 1) % 5);
+        setIsRotating(false);
+        
+        // Wait 5 seconds before next rotation
+        rotationTimeout = setTimeout(startRotation, 5000);
+      }, 300); // Quick rotation duration
+    };
+    
+    // Start the initial rotation after 5 seconds
+    rotationTimeout = setTimeout(startRotation, 5000);
+    
+    return () => {
+      clearTimeout(rotationTimeout);
+    };
   }, []);
-
-  // Calculate active index based on rotation (each petal gets 72 degrees = 0.2 of rotation)
-  const activeIndex = Math.floor(rotationProgress * 5) % 5;
 
   return (
     <div
@@ -93,15 +107,14 @@ const Avatar: React.FC<AvatarProps> = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flower-wrapper">
-        <div className="elegant-flower">
-         // Inside your return statement
+        <div className={`elegant-flower ${isRotating ? 'rotating' : ''}`} style={{ transform: `translate(-50%, -50%) rotate(${currentPosition * 72}deg)` }}>
           {petalIcons.map((icon, i) => (
             <div key={i} className={`petal p${i + 1}`}>
               <div className="petal-content">
                 <img src={icon.src} alt={icon.alt} className="petal-icon" />
                 <div
-                  className={`petal-label ${i === activeIndex ? 'visible' : ''}`}
-                  style={{ color: icon.color }} // Apply color to text instead of background
+                  className={`petal-label ${i === currentPosition ? 'visible' : ''}`}
+                  style={{ color: icon.color }}
                 >
                   {icon.label}
                 </div>
