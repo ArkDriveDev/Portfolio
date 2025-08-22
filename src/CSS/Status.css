@@ -2,31 +2,44 @@
 .status-card {
   --background: rgba(255, 255, 255, 0.1);
   --color: white;
+
   margin: 0;
   height: 320px;
   width: 800px;
   max-width: 90vw;
   border-radius: 20px;
+
+  /* Glass effect */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  overflow: hidden;
+  backdrop-filter: blur(20px); /* 🔥 more blur */
+  -webkit-backdrop-filter: blur(20px);
   background: rgba(255, 255, 255, 0.1);
-  transform: translate(-50%, -50%) scale(0.95);
-  opacity: 0;
-  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  overflow: hidden;
+
+  /* Positioning */
   position: absolute;
   top: 50%;
-  left: 76%;
+  left: 76%; /* 👉 adjust to move left/right */
+  transform: translate(-50%, -50%) scale(0.95);
   transform-origin: center;
-  z-index: 1;
+
+  /* Animations */
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+  /* Always in front */
+  z-index: 9999;
 }
 
+/* Show when wrapper is active */
 .status-card-wrapper .status-card {
   transform: translate(-50%, -50%) scale(1);
   opacity: 1;
 }
 
+/* Top glowing gradient bar */
 .status-card::before {
   content: '';
   position: absolute;
@@ -44,6 +57,7 @@
   animation: gradientShift 3s ease infinite;
 }
 
+/* Hover effect */
 .status-card-wrapper .status-card:hover {
   transform: translate(-50%, -50%) scale(1.02);
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
@@ -51,21 +65,25 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
+/* Header */
 .status-header {
-  text-align: center;
+  text-align: left; /* 🔥 title aligned left */
   padding: 20px;
   background: rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Title */
 .status-title {
   font-size: 1.5em;
   font-weight: 600;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
   letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.9);
+  margin: 0; /* tighter alignment */
 }
 
+/* Content wrapper */
 .status-content {
   padding: 10px;
   height: calc(100% - 80px);
@@ -74,11 +92,11 @@
   justify-content: center;
 }
 
-/* --- FIX: use CSS grid for perfect spacing --- */
+/* Grid for stats */
 .stats-row {
   display: grid !important;
   grid-template-columns: 1fr 1fr;
-  gap: 180px; /* control gap between left and right */
+  gap: 180px; /* spacing between columns */
   justify-content: center;
   width: 100%;
 }
@@ -87,12 +105,14 @@
   max-width: 100%;
 }
 
+/* Each stat item */
 .stat-item {
   padding: 8px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 1.1em;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
   color: rgba(255, 255, 255, 0.85);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -104,6 +124,7 @@
   flex-shrink: 0;
 }
 
+/* Rank badge */
 .rank {
   font-weight: 600;
   color: rgba(255, 255, 255, 0.95);
@@ -123,12 +144,14 @@
   100% { background-position: 0% 50%; }
 }
 
-/* Responsive design */
+/* Responsive */
 @media (max-width: 850px) {
   .status-card {
     width: 90vw;
     height: auto;
     min-height: 350px;
+    left: 50%; /* center on smaller screens */
+    transform: translate(-50%, -50%) scale(1);
   }
 
   .stats-row {
