@@ -67,8 +67,8 @@ const Avatar: React.FC<AvatarProps> = ({
   showHoverPrompt = true
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [currentPosition, setCurrentPosition] = useState(0); // 🌸 petals
-  const [labelPosition, setLabelPosition] = useState(0);     // 🏷 labels
+  const [currentPosition, setCurrentPosition] = useState(0); 
+  const [labelPosition, setLabelPosition] = useState(0);  
   const [isRotating, setIsRotating] = useState(false);
   
   const sizeClass = `avatar ${size}`;
@@ -84,7 +84,6 @@ const Avatar: React.FC<AvatarProps> = ({
       setIsRotating(true);
 
       setTimeout(() => {
-        // 🌸 Petals clockwise
         setCurrentPosition(prev => (prev + 1) % 5);
 
         // 🏷 Labels counterclockwise

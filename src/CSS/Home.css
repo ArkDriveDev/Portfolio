@@ -68,3 +68,94 @@
     font-size: 11px;
   }
 }
+/* Pocket Watch */
+.pocket-watch {
+  position: absolute;
+  top: 90px;
+  right: 120px;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 20px rgba(255,255,255,0.2), inset 0 0 25px rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+/* Watch face */
+.watch-face {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+  box-shadow: inset 0 0 12px rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hands */
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  background: rgba(255,255,255,0.85);
+  border-radius: 2px;
+}
+
+/* Hour hand */
+.hand.hour {
+  width: 4px;
+  height: 25px;
+  animation: rotate-hour 43200s linear infinite; /* 12 hours */
+}
+
+/* Minute hand */
+.hand.minute {
+  width: 3px;
+  height: 35px;
+  animation: rotate-minute 3600s linear infinite; /* 1 hour */
+}
+
+/* Second hand */
+.hand.second {
+  width: 2px;
+  height: 45px;
+  background: rgba(255, 80, 80, 0.9);
+  animation: rotate-second 60s linear infinite; /* 1 minute */
+}
+
+/* Center pin */
+.watch-face::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255,255,255,0.6);
+  z-index: 5;
+}
+
+/* Animations */
+@keyframes rotate-hour {
+  from { transform: translate(-50%, 0) rotate(0deg); }
+  to   { transform: translate(-50%, 0) rotate(360deg); }
+}
+
+@keyframes rotate-minute {
+  from { transform: translate(-50%, 0) rotate(0deg); }
+  to   { transform: translate(-50%, 0) rotate(360deg); }
+}
+
+@keyframes rotate-second {
+  from { transform: translate(-50%, 0) rotate(0deg); }
+  to   { transform: translate(-50%, 0) rotate(360deg); }
+}

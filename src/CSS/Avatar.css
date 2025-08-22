@@ -1,7 +1,8 @@
 .avatar-container {
   position: relative;
   display: inline-block;
-  margin: 220px;
+  margin: 250px;
+  left: 100px;
 }
 
 /* Elegant flower pattern with transparent, pointy petals */
@@ -133,17 +134,17 @@
 }
 
 /* Rest of your CSS remains the same */
-.avatar.small ~ .flower-wrapper .elegant-flower {
+.avatar.small~.flower-wrapper .elegant-flower {
   width: 140%;
   height: 140%;
 }
 
-.avatar.medium ~ .flower-wrapper .elegant-flower {
+.avatar.medium~.flower-wrapper .elegant-flower {
   width: 160%;
   height: 160%;
 }
 
-.avatar.large ~ .flower-wrapper .elegant-flower {
+.avatar.large~.flower-wrapper .elegant-flower {
   width: 180%;
   height: 180%;
 }
@@ -323,7 +324,9 @@
 }
 
 @keyframes petalGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     border-color: rgba(255, 255, 255, 0.8);
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
   }
@@ -371,11 +374,12 @@
 
 /* Reduced motion support */
 @media (prefers-reduced-motion: reduce) {
+
   .petal,
   .petal-icon {
     animation: none !important;
   }
-  
+
   .avatar,
   .avatar::before,
   .avatar img,
@@ -387,7 +391,7 @@
   .avatar.pulse {
     animation: none;
   }
-  
+
   .elegant-flower {
     transition: none !important;
   }
@@ -411,17 +415,17 @@
     --size: 160px;
   }
 
-  .avatar.small ~ .flower-wrapper .elegant-flower {
+  .avatar.small~.flower-wrapper .elegant-flower {
     width: 130%;
     height: 130%;
   }
 
-  .avatar.medium ~ .flower-wrapper .elegant-flower {
+  .avatar.medium~.flower-wrapper .elegant-flower {
     width: 150%;
     height: 150%;
   }
 
-  .avatar.large ~ .flower-wrapper .elegant-flower {
+  .avatar.large~.flower-wrapper .elegant-flower {
     width: 170%;
     height: 170%;
   }
@@ -473,17 +477,17 @@
     --size: 140px;
   }
 
-  .avatar.small ~ .flower-wrapper .elegant-flower {
+  .avatar.small~.flower-wrapper .elegant-flower {
     width: 120%;
     height: 120%;
   }
 
-  .avatar.medium ~ .flower-wrapper .elegant-flower {
+  .avatar.medium~.flower-wrapper .elegant-flower {
     width: 140%;
     height: 140%;
   }
 
-  .avatar.large ~ .flower-wrapper .elegant-flower {
+  .avatar.large~.flower-wrapper .elegant-flower {
     width: 160%;
     height: 160%;
   }

@@ -11,13 +11,22 @@ const Home: React.FC = () => {
           <IonTitle>Status: Freelancing On Students Projects</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent 
-        fullscreen 
-        style={{ 
+      <IonContent
+        fullscreen
+        style={{
           '--background': '#23112bff',
-          '--ion-background-color': '#052c3bff' 
+          '--ion-background-color': '#052c3bff'
         }}
       >
+        {/* Elegant Pocket Watch */}
+        <div className="pocket-watch">
+          <div className="watch-face">
+            <div className="hand hour"></div>
+            <div className="hand minute"></div>
+            <div className="hand second"></div>
+          </div>
+        </div>
+
         <div className="avatar-status-container">
           <div className="avatar-wrapper">
             <Avatar />
@@ -26,12 +35,13 @@ const Home: React.FC = () => {
             </div>
           </div>
         </div>
-        
-        {/* Footer with copyright information */}
+
         <div className="footer">
           <p>© 2023 Arky Roel U. Balaga. All Rights Reserved</p>
         </div>
       </IonContent>
+
+
     </IonPage>
   );
 };
