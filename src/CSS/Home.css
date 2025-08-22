@@ -42,24 +42,28 @@
 }
 
 /* ================= Pocket Watch ================= */
+/* Everything scales from --watch-size */
 .pocket-watch {
+  --watch-size: 280px;                 /* default */
+  --face-scale: 0.7142857143;          /* 200 / 280 */
+  --num-radius: calc(var(--watch-size) * var(--face-scale) * 0.35); /* 70px @ 200 face */
   position: absolute;
   top: 90px;
   right: 120px;
-  width: 280px;
-  height: 280px;
+  width: var(--watch-size);
+  height: var(--watch-size);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 50;
+  font-size: clamp(9px, calc(var(--watch-size) * 0.05), 14px); /* base for scalable text */
 }
 
 /* Outer ring for date display */
 .outer-ring {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
@@ -71,8 +75,8 @@
 /* Watch face (inner circle) */
 .watch-face {
   position: relative;
-  width: 200px;
-  height: 200px;
+  width: calc(var(--watch-size) * var(--face-scale));
+  height: calc(var(--watch-size) * var(--face-scale));
   border-radius: 50%;
   background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
   box-shadow: inset 0 0 12px rgba(255,255,255,0.2);
@@ -82,71 +86,71 @@
   border: 2px solid rgba(255,255,255,0.25);
 }
 
-/* Top curved date */
+/* Top curved date — now uses percentages so it stays inside the circle */
 .date-top {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 250px;
-  height: 250px;
+  top: 52%;
+  left: 48%;
+  width: 100%;          /* match pocket */
+  height: 100%;
   transform: translate(-50%, -50%);
 }
 
 .date-top span {
   position: absolute;
   display: block;
-  transform-origin: 125px 125px;
-  font-size: 12px;
+  /* place each char at the center top, then rotate around bottom-center at half the pocket radius */
+  left: 50%;
+  top: 0;
+  width: 3.25%;
+  height: 50%;                      /* radius = half of pocket */
+  transform-origin: 50% 100%;       /* bottom center */
+  text-align: center;
+  padding-bottom: 2%;
+  font-size: clamp(8px, calc(var(--watch-size) * 0.042), 14px);
   font-weight: 600;
   color: rgba(255,255,255,0.8);
   text-shadow: 0 0 3px rgba(255,255,255,0.5);
-  height: 125px;
-  text-align: center;
-  width: 10px;
-  left: 125px;
-  top: 0;
-  transform-origin: bottom center;
-  padding-bottom: 10px;
 }
 
 /* Bottom year text (not curved) */
 .year-bottom {
   position: absolute;
-  bottom: 15px;
+  bottom: 6%;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 14px;
+  font-size: clamp(9px, calc(var(--watch-size) * 0.045), 14px);
   font-weight: 600;
   color: rgba(255,255,255,0.8);
   text-shadow: 0 0 3px rgba(255,255,255,0.5);
-  letter-spacing: 1px;
+  letter-spacing: clamp(0.5px, calc(var(--watch-size) * 0.004), 1px);
 }
 
 /* Numbers wrapper inside watch-face */
 .watch-face .number {
   position: absolute;
-  top: 45%;
-  left: 47%;
+  top: 50%;
+  left: 50%;
   transform-origin: 0 0;
-  font-size: 14px;
+  font-size: clamp(9px, calc(var(--watch-size) * 0.045), 14px);
   font-weight: 600;
   color: rgba(255, 255, 255, 0.8);
   text-shadow: 0 0 3px rgba(255,255,255,0.5);
 }
 
-/* Position 1–12 numbers using wrapper rotation */
-.watch-face .number1  { transform: rotate(30deg) translateY(-70px) rotate(-30deg); }
-.watch-face .number2  { transform: rotate(60deg) translateY(-70px) rotate(-60deg); }
-.watch-face .number3  { transform: rotate(90deg) translateY(-70px) rotate(-90deg); }
-.watch-face .number4  { transform: rotate(120deg) translateY(-70px) rotate(-120deg); }
-.watch-face .number5  { transform: rotate(150deg) translateY(-70px) rotate(-150deg); }
-.watch-face .number6  { transform: rotate(180deg) translateY(-70px) rotate(-180deg); }
-.watch-face .number7  { transform: rotate(210deg) translateY(-70px) rotate(-210deg); }
-.watch-face .number8  { transform: rotate(240deg) translateY(-70px) rotate(-240deg); }
-.watch-face .number9  { transform: rotate(270deg) translateY(-70px) rotate(-270deg); }
-.watch-face .number10 { transform: rotate(300deg) translateY(-70px) rotate(-300deg); }
-.watch-face .number11 { transform: rotate(330deg) translateY(-70px) rotate(-330deg); }
-.watch-face .number12 { transform: rotate(0deg) translateY(-70px) rotate(0deg); }
+/* Position 1–12 numbers with a scalable radius */
+.watch-face .number1  { transform: rotate(30deg)  translateY(calc(-1 * var(--num-radius)))  rotate(-30deg); }
+.watch-face .number2  { transform: rotate(60deg)  translateY(calc(-1 * var(--num-radius)))  rotate(-60deg); }
+.watch-face .number3  { transform: rotate(90deg)  translateY(calc(-1 * var(--num-radius)))  rotate(-90deg); }
+.watch-face .number4  { transform: rotate(120deg) translateY(calc(-1 * var(--num-radius)))  rotate(-120deg); }
+.watch-face .number5  { transform: rotate(150deg) translateY(calc(-1 * var(--num-radius)))  rotate(-150deg); }
+.watch-face .number6  { transform: rotate(180deg) translateY(calc(-1 * var(--num-radius)))  rotate(-180deg); }
+.watch-face .number7  { transform: rotate(210deg) translateY(calc(-1 * var(--num-radius)))  rotate(-210deg); }
+.watch-face .number8  { transform: rotate(240deg) translateY(calc(-1 * var(--num-radius)))  rotate(-240deg); }
+.watch-face .number9  { transform: rotate(270deg) translateY(calc(-1 * var(--num-radius)))  rotate(-270deg); }
+.watch-face .number10 { transform: rotate(300deg) translateY(calc(-1 * var(--num-radius)))  rotate(-300deg); }
+.watch-face .number11 { transform: rotate(330deg) translateY(calc(-1 * var(--num-radius)))  rotate(-330deg); }
+.watch-face .number12 { transform: rotate(0deg)   translateY(calc(-1 * var(--num-radius)))  rotate(0deg); }
 
 /* ================= Hands ================= */
 .hand {
@@ -158,7 +162,6 @@
   transition: transform 0.5s cubic-bezier(0.4, 2.3, 0.8, 1);
 }
 
-/* Hour hand */
 .hand.hour {
   width: 4px;
   height: 30px;
@@ -166,7 +169,6 @@
   transform: translate(-50%, -100%) rotate(0deg);
 }
 
-/* Minute hand */
 .hand.minute {
   width: 3px;
   height: 45px;
@@ -174,7 +176,6 @@
   transform: translate(-50%, -100%) rotate(0deg);
 }
 
-/* Second hand */
 .hand.second {
   width: 2px;
   height: 55px;
@@ -252,18 +253,9 @@
 
 /* ================= Responsive Design ================= */
 @media (max-width: 1200px) {
-  .left-label {
-    max-width: 350px;
-    left: 30px;
-  }
-  
-  .left-label h2 {
-    font-size: 2.2rem;
-  }
-  
-  .left-label p {
-    font-size: 1.1rem;
-  }
+  .left-label { max-width: 350px; left: 30px; }
+  .left-label h2 { font-size: 2.2rem; }
+  .left-label p { font-size: 1.1rem; }
 }
 
 @media (max-width: 1024px) {
@@ -271,18 +263,13 @@
     position: relative;
     max-width: 80%;
     margin: 40px auto;
-    left: 0;
-    top: 0;
-    transform: none;
+    left: 0; top: 0; transform: none;
   }
-  
   .pocket-watch {
     position: relative;
     margin: 40px auto;
-    top: 0;
-    right: 0;
+    top: 0; right: 0;
   }
-  
   .home-content-wrapper {
     display: flex;
     flex-direction: column;
@@ -291,58 +278,51 @@
 }
 
 @media (max-width: 768px) {
-  .left-label h2 {
-    font-size: 2rem;
+  .left-label h2 { font-size: 2rem; }
+  .left-label p { font-size: 1rem; }
+  .footer { padding: 12px 0; }
+  .footer p { font-size: 12px; }
+
+  .pocket-watch { --watch-size: 240px; }           /* shrink whole watch */
+}
+
+@media (max-width: 480px) {
+  .left-label { padding: 20px; max-width: 90%; }
+  .left-label h2 { font-size: 1.8rem; }
+  .footer { padding: 10px 0; }
+  .footer p { font-size: 11px; }
+
+  .pocket-watch { --watch-size: 200px; }           /* shrink more on phones */
+}
+/* Avatar container positioning inside Home.css */
+.avatar-container {
+  position: relative;
+  display: inline-block;
+  margin: 350px auto;
+  left: 320px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .avatar-container {
+    margin: 200px auto;
+    left: 0; /* release from forced right alignment */
   }
-  
-  .left-label p {
-    font-size: 1rem;
-  }
-  
-  .footer {
-    padding: 12px 0;
-  }
-  
-  .footer p {
-    font-size: 12px;
-  }
-  
-  .pocket-watch {
-    width: 240px;
-    height: 240px;
-  }
-  
-  .watch-face {
-    width: 170px;
-    height: 170px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .avatar-container {
+    margin: 100px auto;
+    left: 0;
+    transform: scale(0.85);
   }
 }
 
 @media (max-width: 480px) {
-  .left-label {
-    padding: 20px;
-    max-width: 90%;
-  }
-  
-  .left-label h2 {
-    font-size: 1.8rem;
-  }
-  
-  .footer {
-    padding: 10px 0;
-  }
-  
-  .footer p {
-    font-size: 11px;
-  }
-  
-  .pocket-watch {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .watch-face {
-    width: 140px;
-    height: 140px;
+  .avatar-container {
+    margin: 50px auto;
+    left: 0;
+    transform: scale(0.75);
   }
 }
