@@ -73,6 +73,10 @@ const Home: React.FC = () => {
                 {[...Array(12)].map((_, i) => (
                   <div key={i} className={`number number${i + 1}`}>{i + 1}</div>
                 ))}
+                {/* Minute/second ticks */}
+                {[...Array(60)].map((_, i) => (
+                  <div key={`tick-${i}`} className={`tick tick${i}`} />
+                ))}
                 <div className="hand hour" style={{ transform: `translate(-50%, -100%) rotate(${hourRotation}deg)` }}></div>
                 <div className="hand minute" style={{ transform: `translate(-50%, -100%) rotate(${minuteRotation}deg)` }}></div>
                 <div className="hand second" style={{ transform: `translate(-50%, -100%) rotate(${secondRotation}deg)` }}></div>
