@@ -50,7 +50,7 @@ const petalIcons = [
   {
     src: SupabaseIcon,
     alt: 'Supabase',
-    label: 'Activate RLS',
+    label: 'Enable RLS',
     color: '#3ECF8E' // Supabase Light Green
   }
 ];
