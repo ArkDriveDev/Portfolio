@@ -112,14 +112,14 @@
   left: 50%;
   transform-origin: bottom center;
   border-radius: 2px;
-  background: rgba(255,255,255,0.85);
+  transition: transform 0.5s cubic-bezier(0.4, 2.3, 0.8, 1);
 }
 
 /* Hour hand */
 .hand.hour {
   width: 4px;
   height: 30px;
-  animation: rotate-hour 43200s linear infinite;
+  background: rgba(255,255,255,0.85);
   transform: translate(-50%, -100%) rotate(0deg);
 }
 
@@ -127,7 +127,7 @@
 .hand.minute {
   width: 3px;
   height: 45px;
-  animation: rotate-minute 3600s linear infinite;
+  background: rgba(255,255,255,0.85);
   transform: translate(-50%, -100%) rotate(0deg);
 }
 
@@ -136,8 +136,8 @@
   width: 2px;
   height: 55px;
   background: rgba(255, 80, 80, 0.9);
-  animation: rotate-second 60s linear infinite;
   transform: translate(-50%, -100%) rotate(0deg);
+  transition: transform 0.2s cubic-bezier(0.4, 2.3, 0.8, 1);
 }
 
 /* Center pin */
@@ -153,22 +153,6 @@
   box-shadow: 0 0 6px rgba(255,255,255,0.6);
   z-index: 5;
   transform: translate(-50%, -50%);
-}
-
-/* ================= Animations ================= */
-@keyframes rotate-hour {
-  from { transform: translate(-50%, -100%) rotate(0deg); }
-  to   { transform: translate(-50%, -100%) rotate(360deg); }
-}
-
-@keyframes rotate-minute {
-  from { transform: translate(-50%, -100%) rotate(0deg); }
-  to   { transform: translate(-50%, -100%) rotate(360deg); }
-}
-
-@keyframes rotate-second {
-  from { transform: translate(-50%, -100%) rotate(0deg); }
-  to   { transform: translate(-50%, -100%) rotate(360deg); }
 }
 
 /* ================= Avatar & Status Container ================= */
