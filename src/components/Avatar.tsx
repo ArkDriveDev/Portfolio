@@ -67,7 +67,8 @@ const Avatar: React.FC<AvatarProps> = ({
   showHoverPrompt = true
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [currentPosition, setCurrentPosition] = useState(0);
+  const [currentPosition, setCurrentPosition] = useState(0); // 🌸 petals
+  const [labelPosition, setLabelPosition] = useState(0);     // 🏷 labels
   const [isRotating, setIsRotating] = useState(false);
   
   const sizeClass = `avatar ${size}`;
@@ -78,23 +79,24 @@ const Avatar: React.FC<AvatarProps> = ({
   // Control incremental rotation with 5 second pause, then quick rotation
   useEffect(() => {
     let rotationTimeout: NodeJS.Timeout;
-    
+
     const startRotation = () => {
-      // Quick rotation to next position
       setIsRotating(true);
-      
+
       setTimeout(() => {
+        // 🌸 Petals clockwise
         setCurrentPosition(prev => (prev + 1) % 5);
+
+        // 🏷 Labels counterclockwise
+        setLabelPosition(prev => (prev - 1 + 5) % 5);
+
         setIsRotating(false);
-        
-        // Wait 5 seconds before next rotation
         rotationTimeout = setTimeout(startRotation, 5000);
-      }, 300); // Quick rotation duration
+      }, 300);
     };
-    
-    // Start the initial rotation after 5 seconds
+
     rotationTimeout = setTimeout(startRotation, 5000);
-    
+
     return () => {
       clearTimeout(rotationTimeout);
     };
@@ -107,13 +109,16 @@ const Avatar: React.FC<AvatarProps> = ({
       onMouseLeave={() => setIsHovered(false)}
     >
       <div className="flower-wrapper">
-        <div className={`elegant-flower ${isRotating ? 'rotating' : ''}`} style={{ transform: `translate(-50%, -50%) rotate(${currentPosition * 72}deg)` }}>
+        <div
+          className={`elegant-flower ${isRotating ? 'rotating' : ''}`}
+          style={{ transform: `translate(-50%, -50%) rotate(${currentPosition * 72}deg)` }}
+        >
           {petalIcons.map((icon, i) => (
             <div key={i} className={`petal p${i + 1}`}>
               <div className="petal-content">
                 <img src={icon.src} alt={icon.alt} className="petal-icon" />
                 <div
-                  className={`petal-label ${i === currentPosition ? 'visible' : ''}`}
+                  className={`petal-label ${i === labelPosition ? 'visible' : ''}`}
                   style={{ color: icon.color }}
                 >
                   {icon.label}
