@@ -21,6 +21,9 @@ const Home: React.FC = () => {
         {/* Elegant Pocket Watch */}
         <div className="pocket-watch">
           <div className="watch-face">
+            {[...Array(12)].map((_, i) => (
+              <div key={i} className={`number number${i + 1}`}>{i + 1}</div>
+            ))}
             <div className="hand hour"></div>
             <div className="hand minute"></div>
             <div className="hand second"></div>

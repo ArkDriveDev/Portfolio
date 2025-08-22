@@ -30,16 +30,10 @@ const petalIcons = [
     color: '#FFA500' // Orange
   },
   {
-    src: NodeJsIcon,
-    alt: 'Node.js',
-    label: 'Npm install',
-    color: '#40E0D0' // Turquoise
-  },
-  {
-    src: IonicIcon,
-    alt: 'Ionic',
-    label: 'Ionic start',
-    color: '#075ef5ff' // Ionic Blue
+    src: SupabaseIcon,
+    alt: 'Supabase',
+    label: 'Enable RLS',
+    color: '#3ECF8E' // Supabase Light Green
   },
   {
     src: ReactIcon,
@@ -48,10 +42,17 @@ const petalIcons = [
     color: '#87CEEB' // Skyblue
   },
   {
-    src: SupabaseIcon,
-    alt: 'Supabase',
-    label: 'Enable RLS',
-    color: '#3ECF8E' // Supabase Light Green
+    src: IonicIcon,
+    alt: 'Ionic',
+    label: 'Ionic start',
+    color: '#075ef5ff' // Ionic Blue
+  },
+  {
+
+    src: NodeJsIcon,
+    alt: 'Node.js',
+    label: 'Npm install',
+    color: '#40E0D0' // Turquoise
   }
 ];
 
@@ -67,10 +68,10 @@ const Avatar: React.FC<AvatarProps> = ({
   showHoverPrompt = true
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [currentPosition, setCurrentPosition] = useState(0); 
-  const [labelPosition, setLabelPosition] = useState(0);  
+  const [currentPosition, setCurrentPosition] = useState(0);
+  const [labelPosition, setLabelPosition] = useState(0);
   const [isRotating, setIsRotating] = useState(false);
-  
+
   const sizeClass = `avatar ${size}`;
   const pulseClass = pulse ? 'pulse' : '';
   const glowingClass = glowing ? 'glowing' : '';

@@ -21,7 +21,7 @@
   /* Positioning */
   position: absolute;
   top: 50%;
-  left: 76%; /* 👉 adjust to move left/right */
+  left: 84%; /* 👉 adjust to move left/right */
   transform: translate(-50%, -50%) scale(0.95);
   transform-origin: center;
 
