@@ -1,3 +1,176 @@
+/* ================= Pocket Watch ================= */
+.pocket-watch {
+  position: absolute;
+  top: 90px;
+  right: 120px;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+/* Outer ring for date display */
+.outer-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 0 20px rgba(255,255,255,0.2), inset 0 0 25px rgba(255,255,255,0.1);
+}
+
+/* Watch face (inner circle) */
+.watch-face {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
+  box-shadow: inset 0 0 12px rgba(255,255,255,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(255,255,255,0.25);
+}
+
+/* Top curved date */
+.date-top {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250px;
+  height: 250px;
+  transform: translate(-50%, -50%);
+}
+
+.date-top span {
+  position: absolute;
+  display: block;
+  transform-origin: 125px 125px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  text-shadow: 0 0 3px rgba(255,255,255,0.5);
+  height: 125px;
+  text-align: center;
+  width: 10px;
+  left: 125px;
+  top: 0;
+  transform-origin: bottom center;
+  padding-bottom: 10px;
+}
+
+/* Bottom year text (not curved) */
+.year-bottom {
+  position: absolute;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  text-shadow: 0 0 3px rgba(255,255,255,0.5);
+  letter-spacing: 1px;
+}
+
+/* Numbers wrapper inside watch-face */
+.watch-face .number {
+  position: absolute;
+  top: 45%;
+  left: 47%;
+  transform-origin: 0 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 3px rgba(255,255,255,0.5);
+}
+
+/* Position 1–12 numbers using wrapper rotation */
+.watch-face .number1  { transform: rotate(30deg) translateY(-70px) rotate(-30deg); }
+.watch-face .number2  { transform: rotate(60deg) translateY(-70px) rotate(-60deg); }
+.watch-face .number3  { transform: rotate(90deg) translateY(-70px) rotate(-90deg); }
+.watch-face .number4  { transform: rotate(120deg) translateY(-70px) rotate(-120deg); }
+.watch-face .number5  { transform: rotate(150deg) translateY(-70px) rotate(-150deg); }
+.watch-face .number6  { transform: rotate(180deg) translateY(-70px) rotate(-180deg); }
+.watch-face .number7  { transform: rotate(210deg) translateY(-70px) rotate(-210deg); }
+.watch-face .number8  { transform: rotate(240deg) translateY(-70px) rotate(-240deg); }
+.watch-face .number9  { transform: rotate(270deg) translateY(-70px) rotate(-270deg); }
+.watch-face .number10 { transform: rotate(300deg) translateY(-70px) rotate(-300deg); }
+.watch-face .number11 { transform: rotate(330deg) translateY(-70px) rotate(-330deg); }
+.watch-face .number12 { transform: rotate(0deg) translateY(-70px) rotate(0deg); }
+
+/* ================= Hands ================= */
+.hand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.85);
+}
+
+/* Hour hand */
+.hand.hour {
+  width: 4px;
+  height: 30px;
+  animation: rotate-hour 43200s linear infinite;
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+/* Minute hand */
+.hand.minute {
+  width: 3px;
+  height: 45px;
+  animation: rotate-minute 3600s linear infinite;
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+/* Second hand */
+.hand.second {
+  width: 2px;
+  height: 55px;
+  background: rgba(255, 80, 80, 0.9);
+  animation: rotate-second 60s linear infinite;
+  transform: translate(-50%, -100%) rotate(0deg);
+}
+
+/* Center pin */
+.watch-face::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255,255,255,0.6);
+  z-index: 5;
+  transform: translate(-50%, -50%);
+}
+
+/* ================= Animations ================= */
+@keyframes rotate-hour {
+  from { transform: translate(-50%, -100%) rotate(0deg); }
+  to   { transform: translate(-50%, -100%) rotate(360deg); }
+}
+
+@keyframes rotate-minute {
+  from { transform: translate(-50%, -100%) rotate(0deg); }
+  to   { transform: translate(-50%, -100%) rotate(360deg); }
+}
+
+@keyframes rotate-second {
+  from { transform: translate(-50%, -100%) rotate(0deg); }
+  to   { transform: translate(-50%, -100%) rotate(360deg); }
+}
+
 /* ================= Avatar & Status Container ================= */
 .avatar-status-container {
   display: flex;
@@ -8,7 +181,7 @@
 .avatar-wrapper {
   position: relative;
   display: inline-block;
-  margin: 60px 0; /* Keep vertical margin but remove horizontal */
+  margin: 60px 0;
 }
 
 .status-card-wrapper {
@@ -19,9 +192,9 @@
   transform-origin: center;
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  z-index: -1; /* Place behind the avatar */
-  width: 400px; /* Increased width for better effect */
-  padding-top: 120px; /* Create space for avatar to sit on top */
+  z-index: -1;
+  width: 400px;
+  padding-top: 120px;
 }
 
 .avatar-wrapper:hover .status-card-wrapper {
@@ -70,129 +243,4 @@
   .footer p {
     font-size: 11px;
   }
-}
-
-/* ================= Pocket Watch ================= */
-.pocket-watch {
-  position: absolute;
-  top: 90px;
-  right: 120px;
-  width: 250px;
-  height: 250px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 0 20px rgba(255,255,255,0.2), inset 0 0 25px rgba(255,255,255,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 50;
-}
-
-/* Watch face */
-.watch-face {
-  position: relative;
-  width: 90%;
-  height: 90%;
-  border-radius: 50%;
-  background: radial-gradient(circle at center, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%);
-  box-shadow: inset 0 0 12px rgba(255,255,255,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid rgba(255,255,255,0.25);
-}
-
-/* Numbers wrapper inside watch-face */
-.watch-face .number {
-  position: absolute;
-  top: 45%;
-  left: 47%;
-  transform-origin: 0 0; /* pivot at center of the number */
-  font-size: 14px;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.8);
-  text-shadow: 0 0 3px rgba(255,255,255,0.5);
-}
-
-/* Position 1–12 numbers using wrapper rotation */
-.watch-face .number1  { transform: rotate(30deg) translateY(-85px) rotate(-30deg); }
-.watch-face .number2  { transform: rotate(60deg) translateY(-85px) rotate(-60deg); }
-.watch-face .number3  { transform: rotate(90deg) translateY(-85px) rotate(-90deg); }
-.watch-face .number4  { transform: rotate(120deg) translateY(-85px) rotate(-120deg); }
-.watch-face .number5  { transform: rotate(150deg) translateY(-85px) rotate(-150deg); }
-.watch-face .number6  { transform: rotate(180deg) translateY(-85px) rotate(-180deg); }
-.watch-face .number7  { transform: rotate(210deg) translateY(-85px) rotate(-210deg); }
-.watch-face .number8  { transform: rotate(240deg) translateY(-85px) rotate(-240deg); }
-.watch-face .number9  { transform: rotate(270deg) translateY(-85px) rotate(-270deg); }
-.watch-face .number10 { transform: rotate(300deg) translateY(-85px) rotate(-300deg); }
-.watch-face .number11 { transform: rotate(330deg) translateY(-85px) rotate(-330deg); }
-.watch-face .number12 { transform: rotate(0deg) translateY(-85px) rotate(0deg); }
-
-/* ================= Hands ================= */
-.hand {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform-origin: bottom center; /* pivot at bottom for rotation */
-  border-radius: 2px;
-  background: rgba(255,255,255,0.85);
-}
-
-/* Hour hand */
-.hand.hour {
-  width: 4px;
-  height: 35px;
-  animation: rotate-hour 43200s linear infinite; /* 12 hours */
-  transform: translate(-50%, -100%) rotate(0deg); /* align bottom to center */
-}
-
-/* Minute hand */
-.hand.minute {
-  width: 3px;
-  height: 55px;
-  animation: rotate-minute 3600s linear infinite; /* 1 hour */
-  transform: translate(-50%, -100%) rotate(0deg);
-}
-
-/* Second hand */
-.hand.second {
-  width: 2px;
-  height: 65px;
-  background: rgba(255, 80, 80, 0.9);
-  animation: rotate-second 60s linear infinite; /* 1 minute */
-  transform: translate(-50%, -100%) rotate(0deg);
-}
-
-/* Center pin stays the same */
-.watch-face::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  background: rgba(255,255,255,0.9);
-  border-radius: 50%;
-  box-shadow: 0 0 6px rgba(255,255,255,0.6);
-  z-index: 5;
-  transform: translate(-50%, -50%);
-}
-
-/* ================= Animations ================= */
-@keyframes rotate-hour {
-  from { transform: translate(-50%, -100%) rotate(0deg); }
-  to   { transform: translate(-50%, -100%) rotate(360deg); }
-}
-
-@keyframes rotate-minute {
-  from { transform: translate(-50%, -100%) rotate(0deg); }
-  to   { transform: translate(-50%, -100%) rotate(360deg); }
-}
-
-@keyframes rotate-second {
-  from { transform: translate(-50%, -100%) rotate(0deg); }
-  to   { transform: translate(-50%, -100%) rotate(360deg); }
 }
