@@ -1,42 +1,29 @@
-/* Status.css */
 .status-card {
-  --background: rgba(255, 255, 255, 0.1);
-  --color: white;
+  --color: #ffffff;
 
   margin: 0;
   height: 320px;
   width: 800px;
   max-width: 90vw;
   border-radius: 20px;
-
-  /* Glass effect */
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px); /* 🔥 more blur */
-  -webkit-backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border: 1px solid #555555;
   overflow: hidden;
 
-  /* Positioning */
   position: absolute;
   top: 50%;
-  left: 84%; /* 👉 adjust to move left/right */
+  left: 86%;
   transform: translate(-50%, -50%) scale(0.95);
   transform-origin: center;
 
-  /* Animations */
-  opacity: 0;
+  opacity: 1;
   transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-
-  /* Always in front */
   z-index: 9999;
 }
 
 /* Show when wrapper is active */
 .status-card-wrapper .status-card {
   transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
 }
 
 /* Top glowing gradient bar */
@@ -49,9 +36,9 @@
   height: 3px;
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 0.3),
-    rgba(255, 255, 255, 0.1),
-    rgba(255, 255, 255, 0.3)
+    #616161,
+    #757575,
+    #616161
   );
   background-size: 200% 200%;
   animation: gradientShift 3s ease infinite;
@@ -60,27 +47,27 @@
 /* Hover effect */
 .status-card-wrapper .status-card:hover {
   transform: translate(-50%, -50%) scale(1.02);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
-  background: rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+  background: #4a4a4a; /* solid hover background */
+  border: 1px solid #666666;
 }
 
 /* Header */
 .status-header {
-  text-align: left; /* 🔥 title aligned left */
+  text-align: left;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: #373737; /* solid header */
+  border-bottom: 1px solid #555555;
 }
 
 /* Title */
 .status-title {
   font-size: 1.5em;
   font-weight: 600;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  text-shadow: 2px 2px 0px #000; /* replace semi-transparent shadow */
   letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.9);
-  margin: 0; /* tighter alignment */
+  color: #ffffff;
+  margin: 0;
 }
 
 /* Content wrapper */
@@ -96,7 +83,7 @@
 .stats-row {
   display: grid !important;
   grid-template-columns: 1fr 1fr;
-  gap: 180px; /* spacing between columns */
+  gap: 180px;
   justify-content: center;
   width: 100%;
 }
@@ -108,10 +95,10 @@
 /* Each stat item */
 .stat-item {
   padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid #555555;
   font-size: 1.1em;
-  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
-  color: rgba(255, 255, 255, 0.85);
+  text-shadow: none; /* remove transparency shadow */
+  color: #ffffff;
 
   display: flex;
   justify-content: space-between;
@@ -127,9 +114,9 @@
 /* Rank badge */
 .rank {
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-  background: rgba(0, 0, 0, 0.2);
+  color: #ffffff;
+  text-shadow: none;
+  background: #2c2c2c; /* solid background */
   padding: 2px 12px;
   border-radius: 20px;
   min-width: 70px;
@@ -150,12 +137,12 @@
     width: 90vw;
     height: auto;
     min-height: 350px;
-    left: 50%; /* center on smaller screens */
+    left: 50%;
     transform: translate(-50%, -50%) scale(1);
   }
 
   .stats-row {
-    grid-template-columns: 1fr; /* stack vertically */
+    grid-template-columns: 1fr;
     gap: 20px;
   }
 }

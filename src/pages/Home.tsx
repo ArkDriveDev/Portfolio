@@ -48,10 +48,11 @@ const Home: React.FC = () => {
       <IonContent
         fullscreen
         style={{
-          '--background': '#23112bff',
-          '--ion-background-color': '#052c3bff'
+          '--background': '#23112b',           // remove alpha
+          '--ion-background-color': '#052c3b'   // remove alpha
         }}
       >
+
         {/* Elegant Pocket Watch */}
         <div className="pocket-watch">
           {/* Outer ring for date display */}
@@ -62,13 +63,13 @@ const Home: React.FC = () => {
                 <span key={i} style={{ transform: `rotate(${i * 10 - 60}deg)` }}>{char}</span>
               ))}
             </div>
-            
+
             {/* Bottom year text (not curved) */}
             <div className="year-bottom">
               {yearText}
             </div>
           </div>
-          
+
           {/* Inner circle for clock face */}
           <div className="watch-face">
             {/* Clock numbers */}
@@ -77,16 +78,16 @@ const Home: React.FC = () => {
             ))}
 
             {/* Clock hands with real-time rotation */}
-            <div 
-              className="hand hour" 
+            <div
+              className="hand hour"
               style={{ transform: `translate(-50%, -100%) rotate(${hourRotation}deg)` }}
             ></div>
-            <div 
-              className="hand minute" 
+            <div
+              className="hand minute"
               style={{ transform: `translate(-50%, -100%) rotate(${minuteRotation}deg)` }}
             ></div>
-            <div 
-              className="hand second" 
+            <div
+              className="hand second"
               style={{ transform: `translate(-50%, -100%) rotate(${secondRotation}deg)` }}
             ></div>
           </div>

@@ -176,7 +176,6 @@
   transform-origin: center;
   opacity: 0;
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-  z-index: -1;
   width: 400px;
   padding-top: 120px;
 }
