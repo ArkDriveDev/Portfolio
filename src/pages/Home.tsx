@@ -27,7 +27,16 @@ const Home: React.FC = () => {
             <div className="hand hour"></div>
             <div className="hand minute"></div>
             <div className="hand second"></div>
+
+            {/* Date display */}
+            <div className="date-top">
+              {"Friday August 22".split("").map((char, i) => <span key={i}>{char}</span>)}
+            </div>
+            <div className="date-bottom">
+              {"2025".split("").map((char, i) => <span key={i}>{char}</span>)}
+            </div>
           </div>
+
         </div>
 
         <div className="avatar-status-container">
