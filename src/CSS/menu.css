@@ -1,20 +1,20 @@
-/* Add this to your global CSS file */
-ion-menu.custom-menu {
+/* Menu Styles - Fixed with explicit values */
+.custom-menu {
   width: 280px;
-  --background: rgba(27, 0, 39, 0.95);
-  --backdrop-filter: blur(10px);
-  --webkit-backdrop-filter: blur(10px);
+  background: rgba(27, 0, 39, 0.95) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .menu-header {
-  --background: rgba(27, 0, 39, 0.3);
+  background: rgba(27, 0, 39, 0.3) !important;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .menu-header ion-toolbar {
-  --background: transparent;
+  background: transparent !important;
 }
 
 .menu-header ion-title {
@@ -25,7 +25,7 @@ ion-menu.custom-menu {
 }
 
 .menu-content {
-  --background: transparent;
+  background: transparent !important;
 }
 
 .menu-list {
@@ -34,15 +34,15 @@ ion-menu.custom-menu {
 }
 
 .menu-item {
-  --background: transparent;
-  --border-color: rgba(255, 255, 255, 0.1);
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.1) !important;
   --padding-start: 20px;
   --padding-end: 20px;
   margin: 8px 0;
 }
 
 .menu-item:hover {
-  --background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.05) !important;
 }
 
 .menu-icon {
@@ -68,4 +68,27 @@ ion-menu.custom-menu {
 .menu-header ion-buttons ion-icon {
   color: rgba(255, 255, 255, 0.7);
   font-size: 24px;
+}
+
+/* Additional styles to ensure proper display */
+ion-menu {
+  --width: 280px;
+  --background: rgba(27, 0, 39, 0.95);
+}
+
+ion-menu ion-content {
+  --background: transparent;
+}
+
+ion-menu ion-list {
+  background: transparent;
+}
+
+ion-menu ion-item {
+  --background: transparent;
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+ion-menu ion-item:hover {
+  --background: rgba(255, 255, 255, 0.05);
 }
