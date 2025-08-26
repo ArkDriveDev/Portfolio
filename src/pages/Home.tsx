@@ -9,7 +9,8 @@ import {
   codeSlashOutline,
   musicalNotesOutline,
   bookOutline,
-  peopleOutline
+  peopleOutline,
+  mapOutline
 } from 'ionicons/icons';
 
 const Home: React.FC = () => {
@@ -22,43 +23,46 @@ const Home: React.FC = () => {
   });
 
   // Projects data constructor
-  const projectsData = [
-    {
-      name: 'Ongacord and Somacord',
-      type: 'Personal Projects',
-      date: 'June 2025 - Present',
-      features: [
-        { icon: codeSlashOutline, tooltip: 'App Development' },
-        { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
-        { icon: musicalNotesOutline, tooltip: 'Music Player' },
-        { icon: micCircleOutline, tooltip: 'Speech Recognition' }
-      ]
-    },
-    {
-      name: 'Cephaline-Supabase',
-      type: 'Northern Bukidnon State College',
-      date: 'May 2025 - Present',
-      features: [
-        { icon: codeSlashOutline, tooltip: 'App Development' },
-        { icon: bookOutline, tooltip: 'Coding Journal' }
-      ]
-    },
-    {
-      name: 'IT35-lab',
-      type: 'Northern Bukidnon State College',
-      date: 'April 2025 - Present',
-      features: [
-        { icon: codeSlashOutline, tooltip: 'App Development' },
-        { icon: peopleOutline, tooltip: 'Social Media App' }
-      ]
-    },
-    {
-      name: 'IT24A',
-      type: 'Northern Bukidnon State College',
-      date: 'October 2024 - Present',
-      features: []
-    }
-  ];
+const projectsData = [
+  {
+    name: 'Ongacord and Somacord',
+    type: 'Personal Projects',
+    date: 'June 2025 - Present',
+    features: [
+      { icon: codeSlashOutline, tooltip: 'App Development' },
+      { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
+      { icon: musicalNotesOutline, tooltip: 'Music Player' },
+      { icon: micCircleOutline, tooltip: 'Speech Recognition' }
+    ]
+  },
+  {
+    name: 'Cephaline-Supabase',
+    type: 'Northern Bukidnon State College',
+    date: 'May 2025 - Present',
+    features: [
+      { icon: codeSlashOutline, tooltip: 'App Development' },
+      { icon: bookOutline, tooltip: 'Coding Journal' }
+    ]
+  },
+  {
+    name: 'IT35-lab',
+    type: 'Northern Bukidnon State College',
+    date: 'April 2025 - Present',
+    features: [
+      { icon: codeSlashOutline, tooltip: 'App Development' },
+      { icon: peopleOutline, tooltip: 'Social Media App' }
+    ]
+  },
+  {
+    name: 'IT24A',
+    type: 'Northern Bukidnon State College',
+    date: 'October 2024 - Present',
+    features: [
+      { icon: codeSlashOutline, tooltip: 'Web Development' },
+      { icon: mapOutline, tooltip: 'Geolocation / Mapping' }
+    ]
+  }
+];
 
   useEffect(() => {
     const updateTime = () => {
