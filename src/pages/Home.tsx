@@ -268,7 +268,7 @@ const Home: React.FC = () => {
             <IonButtons slot="start">
               <IonMenuButton className="menu-button" />
             </IonButtons>
-            <IonTitle className="header">Status Freelancing Student Projects</IonTitle>
+            <IonTitle className="header">Status Freelancing Student</IonTitle>
           </IonToolbar>
         </IonHeader>
 

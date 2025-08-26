@@ -1,9 +1,9 @@
-/* Menu Styles */
-.custom-menu {
-  --width: 280px;
+/* Add this to your global CSS file */
+ion-menu.custom-menu {
+  width: 280px;
   --background: rgba(27, 0, 39, 0.95);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  --backdrop-filter: blur(10px);
+  --webkit-backdrop-filter: blur(10px);
 }
 
 .menu-header {
