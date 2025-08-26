@@ -100,14 +100,16 @@
   top: 100%;
   left: 50%;
   width: 2px;
-  height: 5px; /* smaller default */
+  height: 5px;
+  /* smaller default */
   background: rgba(255, 255, 255, 0.6);
   transform-origin: center calc(var(--face-size) / -2);
 }
 
 /* Stronger hour ticks (every 5 min) */
 .tick:nth-child(5n+1) {
-  height: 9px; /* smaller strong tick */
+  height: 9px;
+  /* smaller strong tick */
   background: rgba(255, 255, 255, 0.9);
 }
 
@@ -463,6 +465,7 @@
     --watch-size: 160px;
   }
 }
+
 .projects-section {
   padding: 20px;
   margin-top: 30px;
@@ -504,10 +507,14 @@
   border-radius: 10px;
   transition: transform 0.3s ease, background 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex; /* Make project item a flex container */
-  align-items: center; /* Center items vertically */
-  justify-content: space-between; /* Space between text and icons */
-  gap: 20px; /* Space between elements */
+  display: flex;
+  /* Make project item a flex container */
+  align-items: center;
+  /* Center items vertically */
+  justify-content: space-between;
+  /* Space between text and icons */
+  gap: 20px;
+  /* Space between elements */
 }
 
 .project-item:hover {
@@ -519,14 +526,16 @@
   display: flex;
   flex-direction: column;
   text-align: left;
-  flex: 1; /* Allow text to take available space */
+  flex: 1;
+  /* Allow text to take available space */
 }
 
 .project-item h3 {
   color: #fff;
   margin: 0 0 5px 0;
   font-size: 1.4rem;
-  white-space: nowrap; /* Prevent text from wrapping */
+  white-space: nowrap;
+  /* Prevent text from wrapping */
 }
 
 .project-type {
@@ -546,8 +555,10 @@
 /* Coding Outlines Styles */
 .coding-outlines {
   display: flex;
-  gap: 10px; /* Reduced gap for horizontal layout */
-  flex-wrap: nowrap; /* Prevent icons from wrapping */
+  gap: 10px;
+  /* Reduced gap for horizontal layout */
+  flex-wrap: nowrap;
+  /* Prevent icons from wrapping */
 }
 
 .outline-item {
@@ -672,19 +683,21 @@
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .project-item {
-    flex-direction: column; /* Stack vertically on mobile */
+    flex-direction: column;
+    /* Stack vertically on mobile */
     text-align: center;
     gap: 15px;
   }
-  
+
   .project-info {
     text-align: center;
   }
-  
+
   .coding-outlines {
     justify-content: center;
   }
 }
+
 /* Add these styles to fix the GitHub icon size in the modal */
 .modal-github-link img {
   width: 24px !important;
@@ -707,6 +720,7 @@
   height: 35px;
   font-size: 18px;
 }
+
 /* Education Section */
 .education-section {
   padding: 20px;
@@ -772,12 +786,86 @@
   .education-item {
     padding: 15px;
   }
-  
+
   .education-item h3 {
     font-size: 1.1rem;
   }
-  
+
   .education-school {
     font-size: 1rem;
+  }
+}
+
+/* ================= Vertical Lines Between Sections ================= */
+
+/* Right line for the first content section */
+.home-content-wrapper {
+  position: relative;
+}
+
+.home-content-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 90px;
+  right: 0;
+  height: 80%;
+  width: 6px;
+  /* Line thickness */
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.1) 100%);
+  z-index: 10;
+}
+
+/* Left line for Projects and Education sections */
+.projects-section,
+.education-section {
+  position: relative;
+}
+
+.projects-section::before,
+.education-section::before {
+  content: '';
+  position: absolute;
+  top: 90px;
+  left: 0;
+  height: 80%;
+  width: 6px;
+  /* Line thickness */
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.1) 100%);
+  z-index: 10;
+}
+
+/* Adjust padding to prevent content from overlapping with lines */
+.main-content {
+  padding-right: 15px;
+  /* Add spacing from the right line */
+}
+
+.projects-container,
+.education-container {
+  padding-left: 20px;
+  /* Add spacing from the left line */
+}
+
+/* For mobile devices, remove the lines or adjust as needed */
+@media (max-width: 1024px) {
+
+  .home-content-wrapper::after,
+  .projects-section::before,
+  .education-section::before {
+    display: none;
+    /* Hide lines on smaller screens */
+  }
+
+  .main-content,
+  .projects-container,
+  .education-container {
+    padding: 0;
+    /* Reset padding on mobile */
   }
 }
