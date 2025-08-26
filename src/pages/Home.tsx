@@ -230,44 +230,47 @@ const Home: React.FC = () => {
           <p>© 2023 Arky Roel U. Balaga. All Rights Reserved</p>
         </div>
       </IonContent>
-      <Modal isOpen={isModalOpen} onClose={closeModal} size="md">
+      <Modal isOpen={isModalOpen} onClose={closeModal}>
         {selectedProject && (
-          <div className="text-white modal-content">
-            <h2 className="text-2xl font-bold mb-2 text-center">{selectedProject.name}</h2>
-            <p className="text-purple-300 mb-4 text-center">{selectedProject.type} - {selectedProject.date}</p>
-
-            <p className="mb-6 italic text-center text-gray-300">{selectedProject.description}</p>
-
-            <div className="flex items-center justify-center mb-6 modal-github-link">
-              <img
-                src={github}
-                alt="GitHub"
-                className="modal-github-img"
-              />
-              <a
-                href={selectedProject.githubUrl}
-                className="text-blue-400 hover:text-blue-300 underline text-sm ml-2"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View on GitHub
-              </a>
+          <>
+            <div className="modal-header">
+              <h2 className="modal-title">{selectedProject.name}</h2>
+              <p className="modal-subtitle">{selectedProject.type} - {selectedProject.date}</p>
             </div>
 
-            <div className="mb-4 modal-technologies">
-              <h3 className="text-lg font-semibold mb-3 text-center">Technologies Used:</h3>
-              <div className="coding-outlines justify-center">
-                {selectedProject.features.map((feature: any, index: number) => (
-                  <div key={index} className="outline-item">
-                    <div className="outline-icon">
-                      <IonIcon icon={feature.icon} />
-                      <span className="tooltip">{feature.tooltip}</span>
+            <div className="modal-body">
+              <p className="modal-description">{selectedProject.description}</p>
+
+              <div className="modal-github-link">
+                <img
+                  src={github}
+                  alt="GitHub"
+                  className="modal-github-img"
+                />
+                <a
+                  href={selectedProject.githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View on GitHub
+                </a>
+              </div>
+
+              <div className="modal-technologies">
+                <h3>Technologies Used:</h3>
+                <div className="coding-outlines justify-center">
+                  {selectedProject.features.map((feature: any, index: number) => (
+                    <div key={index} className="outline-item">
+                      <div className="outline-icon">
+                        <IonIcon icon={feature.icon} />
+                        <span className="tooltip">{feature.tooltip}</span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </>
         )}
       </Modal>
     </IonPage>
