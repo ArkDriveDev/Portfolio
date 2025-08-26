@@ -22,47 +22,63 @@ const Home: React.FC = () => {
     seconds: 0
   });
 
+  // Add this state near your other states
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Function to open modal with project details
+  const openProjectModal = (project: any) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  // Function to close modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
   // Projects data constructor
-const projectsData = [
-  {
-    name: 'Ongacord and Somacord',
-    type: 'Personal Projects',
-    date: 'June 2025 - Present',
-    features: [
-      { icon: codeSlashOutline, tooltip: 'App Development' },
-      { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
-      { icon: musicalNotesOutline, tooltip: 'Music Player' },
-      { icon: micCircleOutline, tooltip: 'Speech Recognition' }
-    ]
-  },
-  {
-    name: 'Cephaline-Supabase',
-    type: 'Northern Bukidnon State College',
-    date: 'May 2025 - Present',
-    features: [
-      { icon: codeSlashOutline, tooltip: 'App Development' },
-      { icon: bookOutline, tooltip: 'Coding Journal' }
-    ]
-  },
-  {
-    name: 'IT35-lab',
-    type: 'Northern Bukidnon State College',
-    date: 'April 2025 - Present',
-    features: [
-      { icon: codeSlashOutline, tooltip: 'App Development' },
-      { icon: peopleOutline, tooltip: 'Social Media App' }
-    ]
-  },
-  {
-    name: 'IT24A',
-    type: 'Northern Bukidnon State College',
-    date: 'October 2024 - Present',
-    features: [
-      { icon: codeSlashOutline, tooltip: 'Web Development' },
-      { icon: mapOutline, tooltip: 'Geolocation / Mapping' }
-    ]
-  }
-];
+  const projectsData = [
+    {
+      name: 'Ongacord and Somacord',
+      type: 'Personal Projects',
+      date: 'June 2025 - Present',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
+        { icon: musicalNotesOutline, tooltip: 'Music Player' },
+        { icon: micCircleOutline, tooltip: 'Speech Recognition' }
+      ]
+    },
+    {
+      name: 'Cephaline-Supabase',
+      type: 'Northern Bukidnon State College',
+      date: 'May 2025 - Present',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: bookOutline, tooltip: 'Coding Journal' }
+      ]
+    },
+    {
+      name: 'IT35-lab',
+      type: 'Northern Bukidnon State College',
+      date: 'April 2025 - Present',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: peopleOutline, tooltip: 'Social Media App' }
+      ]
+    },
+    {
+      name: 'IT24A',
+      type: 'Northern Bukidnon State College',
+      date: 'October 2024 - Present',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'Web Development' },
+        { icon: mapOutline, tooltip: 'Geolocation / Mapping' }
+      ]
+    }
+  ];
 
   useEffect(() => {
     const updateTime = () => {
