@@ -685,13 +685,25 @@
     justify-content: center;
   }
 }
-/* Add to your CSS */
-.modal-github-img {
+/* Add these styles to fix the GitHub icon size in the modal */
+.modal-github-link img {
   width: 24px !important;
   height: 24px !important;
   object-fit: contain;
 }
 
-.coding-outlines.justify-center {
-  justify-content: center;
+/* Make the modal smaller and more compact */
+.modal-content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.modal-technologies .coding-outlines {
+  gap: 8px;
+}
+
+.modal-technologies .outline-icon {
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
 }

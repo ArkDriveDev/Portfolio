@@ -232,21 +232,21 @@ const Home: React.FC = () => {
       </IonContent>
       <Modal isOpen={isModalOpen} onClose={closeModal} size="md">
         {selectedProject && (
-          <div className="text-white">
+          <div className="text-white modal-content">
             <h2 className="text-2xl font-bold mb-2 text-center">{selectedProject.name}</h2>
             <p className="text-purple-300 mb-4 text-center">{selectedProject.type} - {selectedProject.date}</p>
 
             <p className="mb-6 italic text-center text-gray-300">{selectedProject.description}</p>
 
-            <div className="flex items-center justify-center mb-6">
+            <div className="flex items-center justify-center mb-6 modal-github-link">
               <img
-                src={github} // Make sure to import github image
+                src={github}
                 alt="GitHub"
-                className="w-6 h-6 mr-2" // Smaller fixed size
+                className="modal-github-img"
               />
               <a
                 href={selectedProject.githubUrl}
-                className="text-blue-400 hover:text-blue-300 underline text-sm"
+                className="text-blue-400 hover:text-blue-300 underline text-sm ml-2"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -254,7 +254,7 @@ const Home: React.FC = () => {
               </a>
             </div>
 
-            <div className="mb-4">
+            <div className="mb-4 modal-technologies">
               <h3 className="text-lg font-semibold mb-3 text-center">Technologies Used:</h3>
               <div className="coding-outlines justify-center">
                 {selectedProject.features.map((feature: any, index: number) => (
