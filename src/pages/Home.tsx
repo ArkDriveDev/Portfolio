@@ -47,7 +47,7 @@ const Home: React.FC = () => {
       type: 'Personal Projects',
       date: 'June 2025 - Present',
       description: 'A Holographic music app, using pepper\'s ghost illusion',
-      githubUrl: 'https://github.com/ArkDriveDev/Somachord', // Add your actual GitHub URL here
+      githubUrl: 'https://github.com/ArkDriveDev/Somachord',
       features: [
         { icon: codeSlashOutline, tooltip: 'App Development' },
         { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
@@ -59,8 +59,8 @@ const Home: React.FC = () => {
       name: 'Cephaline-Supabase',
       type: 'Northern Bukidnon State College',
       date: 'May 2025 - Present',
-      description: 'A Coding Journal App that can document mood and learnings', // Add description
-      githubUrl: 'https://github.com/ArkDriveDev/Cephaline-Supabase', // Add GitHub URL
+      description: 'A Coding Journal App that can document mood and learnings',
+      githubUrl: 'https://github.com/ArkDriveDev/Cephaline-Supabase',
       features: [
         { icon: codeSlashOutline, tooltip: 'App Development' },
         { icon: bookOutline, tooltip: 'Coding Journal' }
@@ -70,8 +70,8 @@ const Home: React.FC = () => {
       name: 'IT35-lab',
       type: 'Northern Bukidnon State College',
       date: 'April 2025 - Present',
-      description: 'A social media app that can post feeds with images and emojis', // Add description
-      githubUrl: 'https://github.com/ArkDriveDev/it35-lab', // Add GitHub URL
+      description: 'A social media app that can post feeds with images and emojis',
+      githubUrl: 'https://github.com/ArkDriveDev/it35-lab',
       features: [
         { icon: codeSlashOutline, tooltip: 'App Development' },
         { icon: peopleOutline, tooltip: 'Social Media App' }
@@ -81,12 +81,31 @@ const Home: React.FC = () => {
       name: 'IT24A',
       type: 'Northern Bukidnon State College',
       date: 'October 2024 - Present',
-      description: 'A leaflet map and open weather API exploring project', // Add description
-      githubUrl: 'https://github.com/ArkDriveDev/IT24A', // Add GitHub URL
+      description: 'A leaflet map and open weather API exploring project',
+      githubUrl: 'https://github.com/ArkDriveDev/IT24A',
       features: [
         { icon: codeSlashOutline, tooltip: 'Web Development' },
         { icon: mapOutline, tooltip: 'Geolocation / Mapping' }
       ]
+    }
+  ];
+
+  // Education data constructor
+  const educationData = [
+    {
+      level: 'Tertiary School',
+      school: 'Northern Bukidnon State College',
+      status: 'Ongoing'
+    },
+    {
+      level: 'Secondary School',
+      school: 'Manolo Fortich National High School',
+      status: 'Batch of 2018'
+    },
+    {
+      level: 'Primary School',
+      school: 'Manolo Fortich Central Elementary School',
+      status: 'Batch of 2012'
     }
   ];
 
@@ -198,7 +217,7 @@ const Home: React.FC = () => {
                   key={index}
                   className="project-item"
                   onClick={() => openProjectModal(project)}
-                  style={{ cursor: 'pointer' }} // Add pointer cursor to indicate clickability
+                  style={{ cursor: 'pointer' }}
                 >
                   <div className="project-info">
                     <h3>{project.name}</h3>
@@ -225,11 +244,34 @@ const Home: React.FC = () => {
           </div>
         </IonContent>
 
+        {/* Education Section */}
+        <IonContent
+          className="education-section"
+          style={{
+            '--background': '#23112b',
+            '--ion-background-color': '#23112b'
+          }}
+        >
+          <div className="education-container">
+            <h2 className="education-title">Education</h2>
+            <div className="education-list">
+              {educationData.map((education, index) => (
+                <div key={index} className="education-item">
+                  <h3>{education.level}</h3>
+                  <p className="education-school">{education.school}</p>
+                  <p className="education-status">{education.status}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </IonContent>
+
         {/* Footer */}
         <div className="footer">
           <p>© 2023 Arky Roel U. Balaga. All Rights Reserved</p>
         </div>
       </IonContent>
+      
       <Modal isOpen={isModalOpen} onClose={closeModal}>
         {selectedProject && (
           <>
@@ -274,7 +316,6 @@ const Home: React.FC = () => {
         )}
       </Modal>
     </IonPage>
-
   );
 };
 
