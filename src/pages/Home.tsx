@@ -43,7 +43,7 @@ const Home: React.FC = () => {
   // Projects data constructor
   const projectsData = [
     {
-      name: 'Ongacord and Somacord',
+      name: 'Somacord',
       type: 'Personal Projects',
       date: 'June 2025 - Present',
       description: 'A Holographic music app, using pepper\'s ghost illusion',
