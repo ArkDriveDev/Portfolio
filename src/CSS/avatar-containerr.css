@@ -1,0 +1,61 @@
+/* ================= Avatar & Status Container ================= */
+.avatar-status-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-wrapper {
+  position: relative;
+  display: inline-block;
+  margin: 60px 0;
+}
+
+.status-card-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scaleX(0);
+  transform-origin: center;
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+  width: 400px;
+  padding-top: 120px;
+}
+
+.avatar-wrapper:hover .status-card-wrapper {
+  opacity: 1;
+  transform: translate(-50%, -50%) scaleX(1);
+}
+
+/* Avatar container positioning inside Home.css */
+.avatar-container {
+  position: relative;
+  display: inline-block;
+  margin: 350px auto;
+  left: 320px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .avatar-container {
+    margin: 200px auto;
+    left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .avatar-container {
+    margin: 100px auto;
+    left: 0;
+    transform: scale(0.9);
+  }
+}
+
+@media (max-width: 480px) {
+  .avatar-container {
+    margin: 50px auto;
+    left: 0;
+    transform: scale(0.8);
+  }
+}
