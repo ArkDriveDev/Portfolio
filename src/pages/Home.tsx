@@ -1,4 +1,17 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon } from '@ionic/react';
+import { 
+  IonContent, 
+  IonHeader, 
+  IonPage, 
+  IonTitle, 
+  IonToolbar, 
+  IonIcon, 
+  IonMenu, 
+  IonButtons, 
+  IonMenuButton, 
+  IonList, 
+  IonItem, 
+  IonLabel 
+} from '@ionic/react';
 import { useEffect, useState } from 'react';
 import Avatar from '../components/Avatar';
 import Status from '../components/Status';
@@ -11,7 +24,11 @@ import {
   musicalNotesOutline,
   bookOutline,
   peopleOutline,
-  mapOutline
+  mapOutline,
+  homeOutline,
+  schoolOutline,
+  folderOpenOutline,
+  closeOutline
 } from 'ionicons/icons';
 import Modal from '../components/Modal';
 
@@ -129,193 +146,227 @@ const Home: React.FC = () => {
   const secondRotation = time.seconds * 6;
 
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle className="header">Status Freelancing Student Projects</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+    <>
+      <IonMenu contentId="main-content" className="custom-menu">
+        <IonHeader className="menu-header">
+          <IonToolbar>
+            <IonTitle>Menu</IonTitle>
+            <IonButtons slot="end">
+              <IonMenuButton>
+                <IonIcon icon={closeOutline} />
+              </IonMenuButton>
+            </IonButtons>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent className="menu-content">
+          <IonList className="menu-list">
+            <IonItem button routerLink="/" routerDirection="root" className="menu-item">
+              <IonIcon slot="start" icon={homeOutline} className="menu-icon" />
+              <IonLabel className="menu-label">Main Page</IonLabel>
+            </IonItem>
+            <IonItem button routerLink="/projects" routerDirection="root" className="menu-item">
+              <IonIcon slot="start" icon={folderOpenOutline} className="menu-icon" />
+              <IonLabel className="menu-label">Projects</IonLabel>
+            </IonItem>
+            <IonItem button routerLink="/education" routerDirection="root" className="menu-item">
+              <IonIcon slot="start" icon={schoolOutline} className="menu-icon" />
+              <IonLabel className="menu-label">Education</IonLabel>
+            </IonItem>
+          </IonList>
+        </IonContent>
+      </IonMenu>
 
-      <IonContent
-        fullscreen
-        style={{
-          '--background': '#23112b',
-          '--ion-background-color': '#052c3b'
-        }}
-      >
-        <div className="home-content-wrapper">
-          {/* Left Sidebar / Label */}
-          <div className="left-label">
-            <h2>Greetings, I'm Arky Roel U. Balaga</h2>
-            <p>Exploring web technologies is my addiction</p>
-            <p>IT Student & Web Enthusiast</p>
-            <p>Student at Northern Bukidnon State College with a passion for web technologies. Enjoys creating projects and occasional freelance work.</p>
-          </div>
+      <IonPage id="main-content">
+        <IonHeader>
+          <IonToolbar className="header-toolbar">
+            <IonButtons slot="start">
+              <IonMenuButton className="menu-button" />
+            </IonButtons>
+            <IonTitle className="header">Status Freelancing Student Projects</IonTitle>
+          </IonToolbar>
+        </IonHeader>
 
-          {/* Main content */}
-          <div className="main-content">
-            {/* Elegant Pocket Watch */}
-            <div className="pocket-watch">
-              <div className="outer-ring">
-                <div className="date-top">
-                  {dayText.split("").map((char, i) => (
-                    <span key={i} style={{ transform: `rotate(${i * 10 - 60}deg)` }}>{char}</span>
-                  ))}
-                </div>
-                <div className="year-bottom">{yearText}</div>
-              </div>
-
-              <div className="watch-face">
-                {/* Numbers 1–12 */}
-                {[...Array(12)].map((_, i) => (
-                  <div key={i} className={`number number${i + 1}`}>{i + 1}</div>
-                ))}
-
-                {/* Minute/second ticks */}
-                {[...Array(60)].map((_, i) => (
-                  <div
-                    key={`tick-${i}`}
-                    className="tick"
-                    style={{ transform: `rotate(${i * 6}deg)` }}
-                  />
-                ))}
-
-                {/* Clock hands */}
-                <div className="hand hour" style={{ transform: `translate(-50%, -100%) rotate(${hourRotation}deg)` }}></div>
-                <div className="hand minute" style={{ transform: `translate(-50%, -100%) rotate(${minuteRotation}deg)` }}></div>
-                <div className="hand second" style={{ transform: `translate(-50%, -100%) rotate(${secondRotation}deg)` }}></div>
-              </div>
-
-            </div>
-
-            {/* Avatar & Status */}
-            <div className="avatar-status-container">
-              <div className="avatar-wrapper">
-                <Avatar />
-                <div className="status-card-wrapper">
-                  <Status />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Projects Section */}
         <IonContent
-          className="projects-section"
+          fullscreen
           style={{
             '--background': '#23112b',
-            '--ion-background-color': '#23112b'
+            '--ion-background-color': '#052c3b'
           }}
         >
-          <div className="projects-container">
-            <h2 className="projects-title">Projects</h2>
-            <h3 className="projects-subtitle">Sockdrawer</h3>
-            <div className="projects-list">
-              {projectsData.map((project, index) => (
-                <div
-                  key={index}
-                  className="project-item"
-                  onClick={() => openProjectModal(project)}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <div className="project-info">
-                    <h3>{project.name}</h3>
-                    <p className="project-type">{project.type}</p>
-                    <p className="project-date">{project.date}</p>
+          <div className="home-content-wrapper">
+            {/* Left Sidebar / Label */}
+            <div className="left-label">
+              <h2>Greetings, I'm Arky Roel U. Balaga</h2>
+              <p>Exploring web technologies is my addiction</p>
+              <p>IT Student & Web Enthusiast</p>
+              <p>Student at Northern Bukidnon State College with a passion for web technologies. Enjoys creating projects and occasional freelance work.</p>
+            </div>
+
+            {/* Main content */}
+            <div className="main-content">
+              {/* Elegant Pocket Watch */}
+              <div className="pocket-watch">
+                <div className="outer-ring">
+                  <div className="date-top">
+                    {dayText.split("").map((char, i) => (
+                      <span key={i} style={{ transform: `rotate(${i * 10 - 60}deg)` }}>{char}</span>
+                    ))}
                   </div>
-
-                  {/* Render features if they exist */}
-                  {project.features && project.features.length > 0 && (
-                    <div className="coding-outlines">
-                      {project.features.map((feature, featureIndex) => (
-                        <div key={featureIndex} className="outline-item">
-                          <div className="outline-icon">
-                            <IonIcon icon={feature.icon} />
-                            <span className="tooltip">{feature.tooltip}</span>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
+                  <div className="year-bottom">{yearText}</div>
                 </div>
-              ))}
-            </div>
-          </div>
-        </IonContent>
 
-        {/* Education Section */}
-        <IonContent
-          className="education-section"
-          style={{
-            '--background': '#23112b',
-            '--ion-background-color': '#23112b'
-          }}
-        >
-          <div className="education-container">
-            <h2 className="education-title">Education</h2>
-            <div className="education-list">
-              {educationData.map((education, index) => (
-                <div key={index} className="education-item">
-                  <h3>{education.level}</h3>
-                  <p className="education-school">{education.school}</p>
-                  <p className="education-status">{education.status}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </IonContent>
-
-        {/* Footer */}
-        <div className="footer">
-          <p>© 2023 Arky Roel U. Balaga. All Rights Reserved</p>
-        </div>
-      </IonContent>
-      
-      <Modal isOpen={isModalOpen} onClose={closeModal}>
-        {selectedProject && (
-          <>
-            <div className="modal-header">
-              <h2 className="modal-title">{selectedProject.name}</h2>
-              <p className="modal-subtitle">{selectedProject.type} - {selectedProject.date}</p>
-            </div>
-
-            <div className="modal-body">
-              <p className="modal-description">{selectedProject.description}</p>
-
-              <div className="modal-github-link">
-                <img
-                  src={github}
-                  alt="GitHub"
-                  className="modal-github-img"
-                />
-                <a
-                  href={selectedProject.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  View on GitHub
-                </a>
-              </div>
-
-              <div className="modal-technologies">
-                <h3>Technologies Used:</h3>
-                <div className="coding-outlines justify-center">
-                  {selectedProject.features.map((feature: any, index: number) => (
-                    <div key={index} className="outline-item">
-                      <div className="outline-icon">
-                        <IonIcon icon={feature.icon} />
-                        <span className="tooltip">{feature.tooltip}</span>
-                      </div>
-                    </div>
+                <div className="watch-face">
+                  {/* Numbers 1–12 */}
+                  {[...Array(12)].map((_, i) => (
+                    <div key={i} className={`number number${i + 1}`}>{i + 1}</div>
                   ))}
+
+                  {/* Minute/second ticks */}
+                  {[...Array(60)].map((_, i) => (
+                    <div
+                      key={`tick-${i}`}
+                      className="tick"
+                      style={{ transform: `rotate(${i * 6}deg)` }}
+                    />
+                  ))}
+
+                  {/* Clock hands */}
+                  <div className="hand hour" style={{ transform: `translate(-50%, -100%) rotate(${hourRotation}deg)` }}></div>
+                  <div className="hand minute" style={{ transform: `translate(-50%, -100%) rotate(${minuteRotation}deg)` }}></div>
+                  <div className="hand second" style={{ transform: `translate(-50%, -100%) rotate(${secondRotation}deg)` }}></div>
+                </div>
+
+              </div>
+
+              {/* Avatar & Status */}
+              <div className="avatar-status-container">
+                <div className="avatar-wrapper">
+                  <Avatar />
+                  <div className="status-card-wrapper">
+                    <Status />
+                  </div>
                 </div>
               </div>
             </div>
-          </>
-        )}
-      </Modal>
-    </IonPage>
+          </div>
+
+          {/* Projects Section */}
+          <IonContent
+            className="projects-section"
+            style={{
+              '--background': '#23112b',
+              '--ion-background-color': '#23112b'
+            }}
+          >
+            <div className="projects-container">
+              <h2 className="projects-title">Projects</h2>
+              <h3 className="projects-subtitle">Sockdrawer</h3>
+              <div className="projects-list">
+                {projectsData.map((project, index) => (
+                  <div
+                    key={index}
+                    className="project-item"
+                    onClick={() => openProjectModal(project)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <div className="project-info">
+                      <h3>{project.name}</h3>
+                      <p className="project-type">{project.type}</p>
+                      <p className="project-date">{project.date}</p>
+                    </div>
+
+                    {/* Render features if they exist */}
+                    {project.features && project.features.length > 0 && (
+                      <div className="coding-outlines">
+                        {project.features.map((feature, featureIndex) => (
+                          <div key={featureIndex} className="outline-item">
+                            <div className="outline-icon">
+                              <IonIcon icon={feature.icon} />
+                              <span className="tooltip">{feature.tooltip}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </IonContent>
+
+          {/* Education Section */}
+          <IonContent
+            className="education-section"
+            style={{
+              '--background': '#23112b',
+              '--ion-background-color': '#23112b'
+            }}
+          >
+            <div className="education-container">
+              <h2 className="education-title">Education</h2>
+              <div className="education-list">
+                {educationData.map((education, index) => (
+                  <div key={index} className="education-item">
+                    <h3>{education.level}</h3>
+                    <p className="education-school">{education.school}</p>
+                    <p className="education-status">{education.status}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </IonContent>
+
+          {/* Footer */}
+          <div className="footer">
+            <p>© 2023 Arky Roel U. Balaga. All Rights Reserved</p>
+          </div>
+        </IonContent>
+        
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          {selectedProject && (
+            <>
+              <div className="modal-header">
+                <h2 className="modal-title">{selectedProject.name}</h2>
+                <p className="modal-subtitle">{selectedProject.type} - {selectedProject.date}</p>
+              </div>
+
+              <div className="modal-body">
+                <p className="modal-description">{selectedProject.description}</p>
+
+                <div className="modal-github-link">
+                  <img
+                    src={github}
+                    alt="GitHub"
+                    className="modal-github-img"
+                  />
+                  <a
+                    href={selectedProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on GitHub
+                  </a>
+                </div>
+
+                <div className="modal-technologies">
+                  <h3>Technologies Used:</h3>
+                  <div className="coding-outlines justify-center">
+                    {selectedProject.features.map((feature: any, index: number) => (
+                      <div key={index} className="outline-item">
+                        <div className="outline-icon">
+                          <IonIcon icon={feature.icon} />
+                          <span className="tooltip">{feature.tooltip}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </Modal>
+      </IonPage>
+    </>
   );
 };
 
