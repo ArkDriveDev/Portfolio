@@ -1,8 +1,14 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,IonIcon} from '@ionic/react';
 import { useEffect, useState } from 'react';
 import Avatar from '../components/Avatar';
 import Status from '../components/Status';
 import '../CSS/Home.css';
+import {
+  prismOutline,
+  micCircleOutline,
+  codeSlashOutline,
+  musicalNotesOutline
+} from 'ionicons/icons';
 
 const Home: React.FC = () => {
   const dayText = "Friday August 22";
@@ -12,6 +18,40 @@ const Home: React.FC = () => {
     minutes: 0,
     seconds: 0
   });
+
+  // Projects data constructor
+  // Projects data constructor
+  const projectsData = [
+    {
+      name: 'Ongacord and Somacord',
+      type: 'Personal Projects',
+      date: 'June 2025 - Present',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
+        { icon: musicalNotesOutline, tooltip: 'Music Player' },
+        { icon: micCircleOutline, tooltip: 'Speech Recognition' }
+      ]
+    },
+    {
+      name: 'Cephaline-Supabase',
+      type: 'Northern Bukidnon State College',
+      date: 'May 2025 - Present',
+      features: []
+    },
+    {
+      name: 'IT35-lab',
+      type: 'Northern Bukidnon State College',
+      date: 'April 2025 - Present',
+      features: []
+    },
+    {
+      name: 'IT24A',
+      type: 'Northern Bukidnon State College',
+      date: 'October 2024 - Present',
+      features: []
+    }
+  ];
 
   useEffect(() => {
     const updateTime = () => {
@@ -116,26 +156,28 @@ const Home: React.FC = () => {
             <h2 className="projects-title">Projects</h2>
             <h3 className="projects-subtitle">Sockdrawer</h3>
             <div className="projects-list">
-              <div className="project-item">
-                <h3>Ongacord and Somacord</h3>
-                <p className="project-type">Personal Projects</p>
-                <p className="project-date">June 2025 - Present</p>
-              </div>
-              <div className="project-item">
-                <h3>Cephaline-Supabase</h3>
-                <p className="project-type">Northern Bukidnon State College</p>
-                <p className="project-date">May 2025 - Present</p>
-              </div>
-              <div className="project-item">
-                <h3>IT35-lab</h3>
-                <p className="project-type">Northern Bukidnon State College</p>
-                <p className="project-date">April 2025 - Present</p>
-              </div>
-              <div className="project-item">
-                <h3>IT24A</h3>
-                <p className="project-type">Northern Bukidnon State College</p>
-                <p className="project-date">October 2024 - Present</p>
-              </div>
+              {projectsData.map((project, index) => (
+                <div key={index} className="project-item">
+                  <h3>{project.name}</h3>
+                  <p className="project-type">{project.type}</p>
+                  <p className="project-date">{project.date}</p>
+
+                  {/* Render features if they exist */}
+                  {/* Render features if they exist */}
+                  {project.features && project.features.length > 0 && (
+                    <div className="coding-outlines">
+                      {project.features.map((feature, featureIndex) => (
+                        <div key={featureIndex} className="outline-item">
+                          <div className="outline-icon">
+                            <IonIcon icon={feature.icon} />
+                            <span className="tooltip">{feature.tooltip}</span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </IonContent>
