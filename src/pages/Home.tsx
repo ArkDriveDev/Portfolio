@@ -11,13 +11,14 @@ import {
   IonList, 
   IonItem, 
   IonLabel,
-  IonButton
 } from '@ionic/react';
 import { useEffect, useState, useRef } from 'react';
 import Avatar from '../components/Avatar';
 import Status from '../components/Status';
 import '../CSS/Home.css';
+import facebook from '../components/images/facebook.png';
 import github from '../components/images/github.png';
+import gmail from '../components/images/gmail.png';
 import {
   prismOutline,
   micCircleOutline,
@@ -399,8 +400,21 @@ const Home: React.FC = () => {
           </IonContent>
 
           {/* Footer */}
-          <div className="footer">
-            <p>© 2025 Arky Roel U. Balaga. All Rights Reserved</p>
+           <div className="footer">
+            <div className="footer-content">
+              <p>© 2025 Arky Roel U. Balaga. All Rights Reserved</p>
+              <div className="social-icons">
+                <a href="https://www.facebook.com/princess.psyche.501" target="_blank" rel="noopener noreferrer">
+                  <img src={facebook} alt="Facebook" className="social-icon" />
+                </a>
+                <a href="https://github.com/ArkDriveDev" target="_blank" rel="noopener noreferrer">
+                  <img src={github} alt="GitHub" className="social-icon" />
+                </a>
+                <a href="mailto:Arkyroel147@gmail.com">
+                  <img src={gmail} alt="Gmail" className="social-icon" />
+                </a>
+              </div>
+            </div>
           </div>
         </IonContent>
         
