@@ -12,6 +12,7 @@ import {
   peopleOutline,
   mapOutline
 } from 'ionicons/icons';
+import Modal from '../components/Moda';
 
 const Home: React.FC = () => {
   const dayText = "Friday August 22";
@@ -220,7 +221,54 @@ const Home: React.FC = () => {
           <p>© 2023 Arky Roel U. Balaga. All Rights Reserved</p>
         </div>
       </IonContent>
+      <Modal isOpen={isModalOpen} onClose={closeModal} size="lg">
+        {selectedProject && (
+          <div className="text-white">
+            <h2 className="text-2xl font-bold mb-2">{selectedProject.name}</h2>
+            <p className="text-purple-300 mb-4">{selectedProject.type} - {selectedProject.date}</p>
+
+            {selectedProject.name === 'Ongacord and Somacord' && (
+              <>
+                <p className="mb-6 italic">A Holographic music app, using pepper's ghost illusion</p>
+
+                <div className="flex items-center mb-6">
+                  <img
+                    src="../components/images/github.png"
+                    alt="GitHub"
+                    className="w-8 h-8 mr-3"
+                  />
+                  <a
+                    href="#" // Add your actual GitHub URL here
+                    className="text-blue-400 hover:text-blue-300 underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on GitHub
+                  </a>
+                </div>
+
+                <div className="mb-4">
+                  <h3 className="text-lg font-semibold mb-2">Technologies Used:</h3>
+                  <div className="coding-outlines">
+                    {selectedProject.features.map((feature: any, index: number) => (
+                      <div key={index} className="outline-item">
+                        <div className="outline-icon">
+                          <IonIcon icon={feature.icon} />
+                          <span className="tooltip">{feature.tooltip}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+
+            {/* Add conditions for other projects if needed */}
+          </div>
+        )}
+      </Modal>
     </IonPage>
+
   );
 };
 
