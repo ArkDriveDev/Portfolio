@@ -184,7 +184,12 @@ const Home: React.FC = () => {
             <h3 className="projects-subtitle">Sockdrawer</h3>
             <div className="projects-list">
               {projectsData.map((project, index) => (
-                <div key={index} className="project-item">
+                <div
+                  key={index}
+                  className="project-item"
+                  onClick={() => openProjectModal(project)}
+                  style={{ cursor: 'pointer' }} // Add pointer cursor to indicate clickability
+                >
                   <div className="project-info">
                     <h3>{project.name}</h3>
                     <p className="project-type">{project.type}</p>
