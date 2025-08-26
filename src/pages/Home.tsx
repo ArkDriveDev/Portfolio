@@ -104,6 +104,42 @@ const Home: React.FC = () => {
           </div>
         </div>
 
+        {/* Projects Section */}
+        <IonContent
+          className="projects-section"
+          style={{
+            '--background': '#23112b',
+            '--ion-background-color': '#23112b'
+          }}
+        >
+          <div className="projects-container">
+            <h2 className="projects-title">Projects</h2>
+            <h3 className="projects-subtitle">Sockdrawer</h3>
+            <div className="projects-list">
+              <div className="project-item">
+                <h3>Ongacord and Somacord</h3>
+                <p className="project-type">Personal Projects</p>
+                <p className="project-date">June 2025 - Present</p>
+              </div>
+              <div className="project-item">
+                <h3>Cephaline-Supabase</h3>
+                <p className="project-type">Northern Bukidnon State College</p>
+                <p className="project-date">May 2025 - Present</p>
+              </div>
+              <div className="project-item">
+                <h3>IT35-lab</h3>
+                <p className="project-type">Northern Bukidnon State College</p>
+                <p className="project-date">April 2025 - Present</p>
+              </div>
+              <div className="project-item">
+                <h3>IT24A</h3>
+                <p className="project-type">Northern Bukidnon State College</p>
+                <p className="project-date">October 2024 - Present</p>
+              </div>
+            </div>
+          </div>
+        </IonContent>
+
         {/* Footer */}
         <div className="footer">
           <p>© 2023 Arky Roel U. Balaga. All Rights Reserved</p>
