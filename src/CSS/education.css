@@ -1,0 +1,74 @@
+/* Education Section */
+.education-section {
+  padding: 20px;
+  margin-top: 30px;
+  border-top: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.education-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.education-title {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.education-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.education-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.education-item h3 {
+  color: #7e57c2;
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.education-school {
+  color: #fff;
+  margin: 5px 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.education-status {
+  color: #a0a0a0;
+  margin: 5px 0;
+  font-style: italic;
+}
+
+/* Responsive design for education section */
+@media (max-width: 768px) {
+  .education-item {
+    padding: 15px;
+  }
+
+  .education-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .education-school {
+    font-size: 1rem;
+  }
+}
