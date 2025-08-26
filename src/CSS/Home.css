@@ -54,7 +54,7 @@
   --tick-length: 5px;
   --tick-offset: calc(var(--face-size) / 2 + var(--tick-length) / 2);
   position: absolute;
-  top: 90px;
+  top: 20px;
   right: 120px;
   width: var(--watch-size);
   height: var(--watch-size);
