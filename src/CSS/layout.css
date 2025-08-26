@@ -1,0 +1,119 @@
+/* ================= General Layout Styles ================= */
+.header {
+  position: fixed;
+  bottom: 0;
+  left: 50px;
+  width: 100%;
+  padding: 15px 0;
+  background: rgba(27, 0, 39, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.header p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.header-toolbar {
+  --background: rgba(27, 0, 39, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ================= Footer ================= */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  padding: 15px 0;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 10;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.footer p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* ================= Vertical Lines Between Sections ================= */
+.home-content-wrapper {
+  position: relative;
+}
+
+.home-content-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 90px;
+  right: 0;
+  height: 80%;
+  width: 6px;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.1) 100%);
+  z-index: 10;
+}
+
+.projects-section,
+.education-section {
+  position: relative;
+}
+
+.projects-section::before,
+.education-section::before {
+  content: '';
+  position: absolute;
+  top: 90px;
+  left: 0;
+  height: 80%;
+  width: 6px;
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      rgba(255, 255, 255, 0.1) 100%);
+  z-index: 10;
+}
+
+.main-content {
+  padding-right: 15px;
+}
+
+.projects-container,
+.education-container {
+  padding-left: 20px;
+}
+
+/* For mobile devices */
+@media (max-width: 1024px) {
+  .home-content-wrapper::after,
+  .projects-section::before,
+  .education-section::before {
+    display: none;
+  }
+
+  .main-content,
+  .projects-container,
+  .education-container {
+    padding: 0;
+  }
+}
