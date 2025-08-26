@@ -34,8 +34,14 @@ import {
 import Modal from '../components/Modal';
 
 const Home: React.FC = () => {
-  const dayText = "Friday August 22";
-  const yearText = "2025";
+  // Dynamic date and time states
+  const [date, setDate] = useState({
+    day: '',
+    month: '',
+    dayNumber: '',
+    year: ''
+  });
+  
   const [time, setTime] = useState({
     hours: 0,
     minutes: 0,
@@ -171,23 +177,40 @@ const Home: React.FC = () => {
   ];
 
   useEffect(() => {
-    const updateTime = () => {
+    const updateDateTime = () => {
       const now = new Date();
+      
+      // Update time
       setTime({
-        hours: now.getHours() % 12,
+        hours: now.getHours() % 12 || 12, // Convert 0 to 12 for 12-hour format
         minutes: now.getMinutes(),
         seconds: now.getSeconds()
       });
+      
+      // Update date
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      
+      setDate({
+        day: days[now.getDay()],
+        month: months[now.getMonth()],
+        dayNumber: now.getDate().toString(),
+        year: now.getFullYear().toString()
+      });
     };
 
-    updateTime();
-    const intervalId = setInterval(updateTime, 1000);
+    updateDateTime();
+    const intervalId = setInterval(updateDateTime, 1000);
     return () => clearInterval(intervalId);
   }, []);
 
   const hourRotation = (time.hours * 30) + (time.minutes * 0.5);
   const minuteRotation = (time.minutes * 6) + (time.seconds * 0.1);
   const secondRotation = time.seconds * 6;
+
+  // Format the date string for the clock
+  const dayText = `${date.day} ${date.month} ${date.dayNumber}`;
+  const yearText = date.year;
 
   return (
     <>
