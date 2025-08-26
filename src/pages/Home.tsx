@@ -46,33 +46,47 @@ const Home: React.FC = () => {
   const mainContentRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLIonContentElement>(null);
   const educationRef = useRef<HTMLIonContentElement>(null);
+  const menuRef = useRef<HTMLIonMenuElement>(null); // Add ref for menu
 
   // Add this state near your other states
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Function to scroll to a specific section
-  const scrollToSection = (section: string) => {
-    switch(section) {
-      case 'main':
-        if (mainContentRef.current) {
-          mainContentRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-        break;
-      case 'projects':
-        if (projectsRef.current) {
-          const element = projectsRef.current;
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-        break;
-      case 'education':
-        if (educationRef.current) {
-          educationRef.current.scrollIntoView({ behavior: 'smooth' });
-        }
-        break;
-      default:
-        break;
+  // Function to close the menu
+  const closeMenu = async () => {
+    if (menuRef.current) {
+      await menuRef.current.close();
     }
+  };
+
+  // Function to scroll to a specific section
+  const scrollToSection = async (section: string) => {
+    // Close the menu first
+    await closeMenu();
+    
+    // Add a small delay to ensure menu is closed before scrolling
+    setTimeout(() => {
+      switch(section) {
+        case 'main':
+          if (mainContentRef.current) {
+            mainContentRef.current.scrollIntoView({ behavior: 'smooth' });
+          }
+          break;
+        case 'projects':
+          if (projectsRef.current) {
+            const element = projectsRef.current;
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+          break;
+        case 'education':
+          if (educationRef.current) {
+            educationRef.current.scrollIntoView({ behavior: 'smooth' });
+          }
+          break;
+        default:
+          break;
+      }
+    }, 100);
   };
 
   // Function to open modal with project details
@@ -177,7 +191,7 @@ const Home: React.FC = () => {
 
   return (
     <>
-      <IonMenu contentId="main-content" className="custom-menu">
+      <IonMenu ref={menuRef} contentId="main-content" className="custom-menu">
         <IonHeader className="menu-header">
           <IonToolbar>
             <IonTitle>Menu</IonTitle>
