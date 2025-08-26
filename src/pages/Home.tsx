@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar,IonIcon} from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonIcon } from '@ionic/react';
 import { useEffect, useState } from 'react';
 import Avatar from '../components/Avatar';
 import Status from '../components/Status';
@@ -8,7 +8,8 @@ import {
   micCircleOutline,
   codeSlashOutline,
   musicalNotesOutline,
-  bookOutline
+  bookOutline,
+  peopleOutline
 } from 'ionicons/icons';
 
 const Home: React.FC = () => {
@@ -21,40 +22,43 @@ const Home: React.FC = () => {
   });
 
   // Projects data constructor
-const projectsData = [
-  {
-    name: 'Ongacord and Somacord',
-    type: 'Personal Projects',
-    date: 'June 2025 - Present',
-    features: [
-      { icon: codeSlashOutline, tooltip: 'App Development' },
-      { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
-      { icon: musicalNotesOutline, tooltip: 'Music Player' },
-      { icon: micCircleOutline, tooltip: 'Speech Recognition' }
-    ]
-  },
-  {
-    name: 'Cephaline-Supabase',
-    type: 'Northern Bukidnon State College',
-    date: 'May 2025 - Present',
-    features: [
-      { icon: codeSlashOutline, tooltip: 'App Development' },
-      { icon: bookOutline, tooltip: 'Coding Journal' }
-    ]
-  },
-  {
-    name: 'IT35-lab',
-    type: 'Northern Bukidnon State College',
-    date: 'April 2025 - Present',
-    features: []
-  },
-  {
-    name: 'IT24A',
-    type: 'Northern Bukidnon State College',
-    date: 'October 2024 - Present',
-    features: []
-  }
-];
+  const projectsData = [
+    {
+      name: 'Ongacord and Somacord',
+      type: 'Personal Projects',
+      date: 'June 2025 - Present',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
+        { icon: musicalNotesOutline, tooltip: 'Music Player' },
+        { icon: micCircleOutline, tooltip: 'Speech Recognition' }
+      ]
+    },
+    {
+      name: 'Cephaline-Supabase',
+      type: 'Northern Bukidnon State College',
+      date: 'May 2025 - Present',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: bookOutline, tooltip: 'Coding Journal' }
+      ]
+    },
+    {
+      name: 'IT35-lab',
+      type: 'Northern Bukidnon State College',
+      date: 'April 2025 - Present',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: peopleOutline, tooltip: 'Social Media App' }
+      ]
+    },
+    {
+      name: 'IT24A',
+      type: 'Northern Bukidnon State College',
+      date: 'October 2024 - Present',
+      features: []
+    }
+  ];
 
   useEffect(() => {
     const updateTime = () => {
@@ -161,11 +165,12 @@ const projectsData = [
             <div className="projects-list">
               {projectsData.map((project, index) => (
                 <div key={index} className="project-item">
-                  <h3>{project.name}</h3>
-                  <p className="project-type">{project.type}</p>
-                  <p className="project-date">{project.date}</p>
+                  <div className="project-info">
+                    <h3>{project.name}</h3>
+                    <p className="project-type">{project.type}</p>
+                    <p className="project-date">{project.date}</p>
+                  </div>
 
-                  {/* Render features if they exist */}
                   {/* Render features if they exist */}
                   {project.features && project.features.length > 0 && (
                     <div className="coding-outlines">
