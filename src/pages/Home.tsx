@@ -41,54 +41,54 @@ const Home: React.FC = () => {
   };
 
   // Projects data constructor
-const projectsData = [
-  {
-    name: 'Ongacord and Somacord',
-    type: 'Personal Projects',
-    date: 'June 2025 - Present',
-    description: 'A Holographic music app, using pepper\'s ghost illusion',
-    githubUrl: '#', // Add your actual GitHub URL here
-    features: [
-      { icon: codeSlashOutline, tooltip: 'App Development' },
-      { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
-      { icon: musicalNotesOutline, tooltip: 'Music Player' },
-      { icon: micCircleOutline, tooltip: 'Speech Recognition' }
-    ]
-  },
-  {
-    name: 'Cephaline-Supabase',
-    type: 'Northern Bukidnon State College',
-    date: 'May 2025 - Present',
-    description: 'Your project description here', // Add description
-    githubUrl: '#', // Add GitHub URL
-    features: [
-      { icon: codeSlashOutline, tooltip: 'App Development' },
-      { icon: bookOutline, tooltip: 'Coding Journal' }
-    ]
-  },
-  {
-    name: 'IT35-lab',
-    type: 'Northern Bukidnon State College',
-    date: 'April 2025 - Present',
-    description: 'Your project description here', // Add description
-    githubUrl: '#', // Add GitHub URL
-    features: [
-      { icon: codeSlashOutline, tooltip: 'App Development' },
-      { icon: peopleOutline, tooltip: 'Social Media App' }
-    ]
-  },
-  {
-    name: 'IT24A',
-    type: 'Northern Bukidnon State College',
-    date: 'October 2024 - Present',
-    description: 'Your project description here', // Add description
-    githubUrl: '#', // Add GitHub URL
-    features: [
-      { icon: codeSlashOutline, tooltip: 'Web Development' },
-      { icon: mapOutline, tooltip: 'Geolocator / Mapping' }
-    ]
-  }
-];
+  const projectsData = [
+    {
+      name: 'Ongacord and Somacord',
+      type: 'Personal Projects',
+      date: 'June 2025 - Present',
+      description: 'A Holographic music app, using pepper\'s ghost illusion',
+      githubUrl: '#', // Add your actual GitHub URL here
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
+        { icon: musicalNotesOutline, tooltip: 'Music Player' },
+        { icon: micCircleOutline, tooltip: 'Speech Recognition' }
+      ]
+    },
+    {
+      name: 'Cephaline-Supabase',
+      type: 'Northern Bukidnon State College',
+      date: 'May 2025 - Present',
+      description: 'Your project description here', // Add description
+      githubUrl: '#', // Add GitHub URL
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: bookOutline, tooltip: 'Coding Journal' }
+      ]
+    },
+    {
+      name: 'IT35-lab',
+      type: 'Northern Bukidnon State College',
+      date: 'April 2025 - Present',
+      description: 'Your project description here', // Add description
+      githubUrl: '#', // Add GitHub URL
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: peopleOutline, tooltip: 'Social Media App' }
+      ]
+    },
+    {
+      name: 'IT24A',
+      type: 'Northern Bukidnon State College',
+      date: 'October 2024 - Present',
+      description: 'Your project description here', // Add description
+      githubUrl: '#', // Add GitHub URL
+      features: [
+        { icon: codeSlashOutline, tooltip: 'Web Development' },
+        { icon: mapOutline, tooltip: 'Geolocator / Mapping' }
+      ]
+    }
+  ];
 
   useEffect(() => {
     const updateTime = () => {
@@ -230,47 +230,43 @@ const projectsData = [
           <p>© 2023 Arky Roel U. Balaga. All Rights Reserved</p>
         </div>
       </IonContent>
-      <Modal isOpen={isModalOpen} onClose={closeModal} size="lg">
+      <Modal isOpen={isModalOpen} onClose={closeModal} size="md">
         {selectedProject && (
           <div className="text-white">
-            <h2 className="text-2xl font-bold mb-2">{selectedProject.name}</h2>
-            <p className="text-purple-300 mb-4">{selectedProject.type} - {selectedProject.date}</p>
+            <h2 className="text-2xl font-bold mb-2 text-center">{selectedProject.name}</h2>
+            <p className="text-purple-300 mb-4 text-center">{selectedProject.type} - {selectedProject.date}</p>
 
-            {selectedProject.name === 'Ongacord and Somacord' && (
-              <>
-                <p className="mb-6 italic">A Holographic music app, using pepper's ghost illusion</p>
+            <p className="mb-6 italic text-center text-gray-300">{selectedProject.description}</p>
 
-                <div className="flex items-center mb-6">
-                  <img
-                    src={github}
-                    alt="GitHub"
-                    className="w-8 h-8 mr-3"
-                  />
-                  <a
-                    href="#" // Add your actual GitHub URL here
-                    className="text-blue-400 hover:text-blue-300 underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View on GitHub
-                  </a>
-                </div>
+            <div className="flex items-center justify-center mb-6">
+              <img
+                src={github} // Make sure to import github image
+                alt="GitHub"
+                className="w-6 h-6 mr-2" // Smaller fixed size
+              />
+              <a
+                href={selectedProject.githubUrl}
+                className="text-blue-400 hover:text-blue-300 underline text-sm"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                View on GitHub
+              </a>
+            </div>
 
-                <div className="mb-4">
-                  <h3 className="text-lg font-semibold mb-2">Technologies Used:</h3>
-                  <div className="coding-outlines">
-                    {selectedProject.features.map((feature: any, index: number) => (
-                      <div key={index} className="outline-item">
-                        <div className="outline-icon">
-                          <IonIcon icon={feature.icon} />
-                          <span className="tooltip">{feature.tooltip}</span>
-                        </div>
-                      </div>
-                    ))}
+            <div className="mb-4">
+              <h3 className="text-lg font-semibold mb-3 text-center">Technologies Used:</h3>
+              <div className="coding-outlines justify-center">
+                {selectedProject.features.map((feature: any, index: number) => (
+                  <div key={index} className="outline-item">
+                    <div className="outline-icon">
+                      <IonIcon icon={feature.icon} />
+                      <span className="tooltip">{feature.tooltip}</span>
+                    </div>
                   </div>
-                </div>
-              </>
-            )}
+                ))}
+              </div>
+            </div>
           </div>
         )}
       </Modal>
