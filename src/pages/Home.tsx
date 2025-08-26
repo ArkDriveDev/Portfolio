@@ -15,7 +15,13 @@ import {
 import { useEffect, useState, useRef } from 'react';
 import Avatar from '../components/Avatar';
 import Status from '../components/Status';
-import '../CSS/Home.css';
+import '../CSS/layout.css';
+import '../CSS/left-label.css';
+import '../CSS/pocket-watch.css';
+import '../CSS/avatar-containerr.css';
+import '../CSS/projects.css';
+import '../CSS/education.css';
+import '../CSS/menu.css';
 import facebook from '../components/images/facebook.png';
 import github from '../components/images/github.png';
 import gmail from '../components/images/gmail.png';
