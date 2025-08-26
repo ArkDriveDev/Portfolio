@@ -10,9 +10,10 @@ import {
   IonMenuButton, 
   IonList, 
   IonItem, 
-  IonLabel 
+  IonLabel,
+  IonButton
 } from '@ionic/react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Avatar from '../components/Avatar';
 import Status from '../components/Status';
 import '../CSS/Home.css';
@@ -41,9 +42,38 @@ const Home: React.FC = () => {
     seconds: 0
   });
 
+  // Refs for scrolling to sections
+  const mainContentRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLIonContentElement>(null);
+  const educationRef = useRef<HTMLIonContentElement>(null);
+
   // Add this state near your other states
   const [selectedProject, setSelectedProject] = useState<any>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Function to scroll to a specific section
+  const scrollToSection = (section: string) => {
+    switch(section) {
+      case 'main':
+        if (mainContentRef.current) {
+          mainContentRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+        break;
+      case 'projects':
+        if (projectsRef.current) {
+          const element = projectsRef.current;
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+        break;
+      case 'education':
+        if (educationRef.current) {
+          educationRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+        break;
+      default:
+        break;
+    }
+  };
 
   // Function to open modal with project details
   const openProjectModal = (project: any) => {
@@ -160,15 +190,27 @@ const Home: React.FC = () => {
         </IonHeader>
         <IonContent className="menu-content">
           <IonList className="menu-list">
-            <IonItem button routerLink="/" routerDirection="root" className="menu-item">
+            <IonItem 
+              button 
+              className="menu-item"
+              onClick={() => scrollToSection('main')}
+            >
               <IonIcon slot="start" icon={homeOutline} className="menu-icon" />
               <IonLabel className="menu-label">Main Page</IonLabel>
             </IonItem>
-            <IonItem button routerLink="/projects" routerDirection="root" className="menu-item">
+            <IonItem 
+              button 
+              className="menu-item"
+              onClick={() => scrollToSection('projects')}
+            >
               <IonIcon slot="start" icon={folderOpenOutline} className="menu-icon" />
               <IonLabel className="menu-label">Projects</IonLabel>
             </IonItem>
-            <IonItem button routerLink="/education" routerDirection="root" className="menu-item">
+            <IonItem 
+              button 
+              className="menu-item"
+              onClick={() => scrollToSection('education')}
+            >
               <IonIcon slot="start" icon={schoolOutline} className="menu-icon" />
               <IonLabel className="menu-label">Education</IonLabel>
             </IonItem>
@@ -193,7 +235,8 @@ const Home: React.FC = () => {
             '--ion-background-color': '#052c3b'
           }}
         >
-          <div className="home-content-wrapper">
+          {/* Main Content Section with ref */}
+          <div ref={mainContentRef} className="home-content-wrapper">
             {/* Left Sidebar / Label */}
             <div className="left-label">
               <h2>Greetings, I'm Arky Roel U. Balaga</h2>
@@ -250,8 +293,9 @@ const Home: React.FC = () => {
             </div>
           </div>
 
-          {/* Projects Section */}
+          {/* Projects Section with ref */}
           <IonContent
+            ref={projectsRef}
             className="projects-section"
             style={{
               '--background': '#23112b',
@@ -294,8 +338,9 @@ const Home: React.FC = () => {
             </div>
           </IonContent>
 
-          {/* Education Section */}
+          {/* Education Section with ref */}
           <IonContent
+            ref={educationRef}
             className="education-section"
             style={{
               '--background': '#23112b',
@@ -318,7 +363,7 @@ const Home: React.FC = () => {
 
           {/* Footer */}
           <div className="footer">
-            <p>© 2023 Arky Roel U. Balaga. All Rights Reserved</p>
+            <p>© 2025 Arky Roel U. Balaga. All Rights Reserved</p>
           </div>
         </IonContent>
         
