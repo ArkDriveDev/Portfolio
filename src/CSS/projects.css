@@ -1,0 +1,245 @@
+/* Projects Section */
+.projects-section {
+  padding: 20px;
+  margin-top: 30px;
+  border-top: 3px solid rgba(255, 255, 255, 0.2);
+  background: #23112b;
+}
+
+.projects-container {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.projects-title {
+  color: #fff;
+  font-size: 2rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.projects-subtitle {
+  color: #7e57c2;
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  text-transform: lowercase;
+  font-style: italic;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.project-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 15px 20px;
+  border-radius: 10px;
+  transition: transform 0.3s ease, background 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.project-item:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex: 1;
+}
+
+.project-item h3 {
+  color: #fff;
+  margin: 0 0 5px 0;
+  font-size: 1.4rem;
+  white-space: nowrap;
+}
+
+.project-type {
+  color: #a0a0a0;
+  margin: 2px 0;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+.project-date {
+  color: #7e57c2;
+  margin: 2px 0;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Coding Outlines Styles */
+.coding-outlines {
+  display: flex;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.outline-item {
+  position: relative;
+}
+
+.outline-icon {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: visible;
+  font-size: 20px;
+}
+
+.outline-icon::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(126, 87, 194, 0.1);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.outline-icon:hover {
+  border-color: #7e57c2;
+  transform: translateY(-3px);
+  box-shadow: 0 3px 10px rgba(126, 87, 194, 0.4);
+}
+
+.outline-icon:hover::before {
+  opacity: 1;
+}
+
+/* Tooltip - Fixed positioning */
+.tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  pointer-events: none;
+  margin-top: 8px;
+}
+
+.outline-item:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Add a small arrow to the tooltip */
+.tooltip::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 4px;
+  border-style: solid;
+  border-color: transparent transparent rgba(0, 0, 0, 0.9) transparent;
+}
+
+/* Icon-specific hover colors */
+.outline-icon:hover ion-icon {
+  color: #64ffda;
+}
+
+.outline-icon:hover ion-icon[icon="code-slash-outline"] {
+  color: #64ffda;
+}
+
+.outline-icon:hover ion-icon[icon="prism-outline"] {
+  color: #ff79c6;
+}
+
+.outline-icon:hover ion-icon[icon="musical-notes-outline"] {
+  color: #ff5555;
+}
+
+.outline-icon:hover ion-icon[icon="mic-circle-outline"] {
+  color: #8be9fd;
+}
+
+.outline-icon:hover ion-icon[icon="book-outline"] {
+  color: #50fa7b;
+}
+
+.outline-icon:hover ion-icon[icon="people-outline"] {
+  color: #ffb86c;
+}
+
+/* Animation for icons */
+.outline-icon ion-icon {
+  transition: all 0.3s ease;
+  color: rgba(255, 255, 255, 0.8);
+  z-index: 2;
+  position: relative;
+}
+
+.outline-icon:hover ion-icon {
+  transform: scale(1.2);
+}
+
+/* Modal styles */
+.modal-github-link img {
+  width: 24px !important;
+  height: 24px !important;
+  object-fit: contain;
+}
+
+.modal-content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.modal-technologies .coding-outlines {
+  gap: 8px;
+}
+
+.modal-technologies .outline-icon {
+  width: 35px;
+  height: 35px;
+  font-size: 18px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .project-item {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .project-info {
+    text-align: center;
+  }
+
+  .coding-outlines {
+    justify-content: center;
+  }
+}

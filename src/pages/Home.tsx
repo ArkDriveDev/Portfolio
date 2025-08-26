@@ -1,22 +1,474 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
-import './Home.css';
+import { 
+  IonContent, 
+  IonHeader, 
+  IonPage, 
+  IonTitle, 
+  IonToolbar, 
+  IonIcon, 
+  IonMenu, 
+  IonButtons, 
+  IonMenuButton, 
+  IonList, 
+  IonItem, 
+  IonLabel,
+} from '@ionic/react';
+import { useEffect, useState, useRef } from 'react';
+import Avatar from '../components/Avatar';
+import Status from '../components/Status';
+import '../CSS/layout.css';
+import '../CSS/left-label.css';
+import '../CSS/pocket-watch.css';
+import '../CSS/avatar-containerr.css';
+import '../CSS/projects.css';
+import '../CSS/education.css';
+import '../CSS/menu.css';
+import facebook from '../components/images/facebook.png';
+import github from '../components/images/github.png';
+import gmail from '../components/images/gmail.png';
+import {
+  prismOutline,
+  micCircleOutline,
+  codeSlashOutline,
+  musicalNotesOutline,
+  bookOutline,
+  peopleOutline,
+  mapOutline,
+  homeOutline,
+  schoolOutline,
+  folderOpenOutline,
+  closeOutline
+} from 'ionicons/icons';
+import Modal from '../components/Modal';
 
 const Home: React.FC = () => {
+  // Dynamic date and time states
+  const [date, setDate] = useState({
+    day: '',
+    month: '',
+    dayNumber: '',
+    year: ''
+  });
+  
+  const [time, setTime] = useState({
+    hours: 0,
+    minutes: 0,
+    seconds: 0
+  });
+
+  // Refs for scrolling to sections
+  const mainContentRef = useRef<HTMLDivElement>(null);
+  const projectsRef = useRef<HTMLIonContentElement>(null);
+  const educationRef = useRef<HTMLIonContentElement>(null);
+  const menuRef = useRef<HTMLIonMenuElement>(null); // Add ref for menu
+
+  // Add this state near your other states
+  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Function to close the menu
+  const closeMenu = async () => {
+    if (menuRef.current) {
+      await menuRef.current.close();
+    }
+  };
+
+  // Function to scroll to a specific section
+  const scrollToSection = async (section: string) => {
+    // Close the menu first
+    await closeMenu();
+    
+    // Add a small delay to ensure menu is closed before scrolling
+    setTimeout(() => {
+      switch(section) {
+        case 'main':
+          if (mainContentRef.current) {
+            mainContentRef.current.scrollIntoView({ behavior: 'smooth' });
+          }
+          break;
+        case 'projects':
+          if (projectsRef.current) {
+            const element = projectsRef.current;
+            element.scrollIntoView({ behavior: 'smooth' });
+          }
+          break;
+        case 'education':
+          if (educationRef.current) {
+            educationRef.current.scrollIntoView({ behavior: 'smooth' });
+          }
+          break;
+        default:
+          break;
+      }
+    }, 100);
+  };
+
+  // Function to open modal with project details
+  const openProjectModal = (project: any) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  // Function to close modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
+
+  // Projects data constructor
+  const projectsData = [
+    {
+      name: 'Somacord',
+      type: 'Personal Projects',
+      date: 'June 2025 - Present',
+      description: 'A Holographic music app, using pepper\'s ghost illusion',
+      githubUrl: 'https://github.com/ArkDriveDev/Somachord',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
+        { icon: musicalNotesOutline, tooltip: 'Music Player' },
+        { icon: micCircleOutline, tooltip: 'Speech Recognition' }
+      ]
+    },
+    {
+      name: 'Cephaline-Supabase',
+      type: 'Northern Bukidnon State College',
+      date: 'May 2025 - Present',
+      description: 'A Coding Journal App that can document mood and learnings',
+      githubUrl: 'https://github.com/ArkDriveDev/Cephaline-Supabase',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: bookOutline, tooltip: 'Coding Journal' }
+      ]
+    },
+    {
+      name: 'IT35-lab',
+      type: 'Northern Bukidnon State College',
+      date: 'April 2025 - Present',
+      description: 'A social media app that can post feeds with images and emojis',
+      githubUrl: 'https://github.com/ArkDriveDev/it35-lab',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'App Development' },
+        { icon: peopleOutline, tooltip: 'Social Media App' }
+      ]
+    },
+    {
+      name: 'IT24A',
+      type: 'Northern Bukidnon State College',
+      date: 'October 2024 - Present',
+      description: 'A leaflet map and open weather API exploring project',
+      githubUrl: 'https://github.com/ArkDriveDev/IT24A',
+      features: [
+        { icon: codeSlashOutline, tooltip: 'Web Development' },
+        { icon: mapOutline, tooltip: 'Geolocation / Mapping' }
+      ]
+    }
+  ];
+
+  // Education data constructor
+  const educationData = [
+    {
+      level: 'Tertiary School',
+      school: 'Northern Bukidnon State College',
+      status: 'Ongoing'
+    },
+    {
+      level: 'Secondary School',
+      school: 'Manolo Fortich National High School',
+      status: 'Batch of 2018'
+    },
+    {
+      level: 'Primary School',
+      school: 'Manolo Fortich Central Elementary School',
+      status: 'Batch of 2012'
+    }
+  ];
+
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      
+      // Update time
+      setTime({
+        hours: now.getHours() % 12 || 12, // Convert 0 to 12 for 12-hour format
+        minutes: now.getMinutes(),
+        seconds: now.getSeconds()
+      });
+      
+      // Update date
+      const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      
+      setDate({
+        day: days[now.getDay()],
+        month: months[now.getMonth()],
+        dayNumber: now.getDate().toString(),
+        year: now.getFullYear().toString()
+      });
+    };
+
+    updateDateTime();
+    const intervalId = setInterval(updateDateTime, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const hourRotation = (time.hours * 30) + (time.minutes * 0.5);
+  const minuteRotation = (time.minutes * 6) + (time.seconds * 0.1);
+  const secondRotation = time.seconds * 6;
+
+  // Format the date string for the clock
+  const dayText = `${date.day} ${date.month} ${date.dayNumber}`;
+  const yearText = date.year;
+
   return (
-    <IonPage>
-      <IonHeader>
-        <IonToolbar>
-          <IonTitle>Blank</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent fullscreen>
-        <IonHeader collapse="condense">
+    <>
+      <IonMenu ref={menuRef} contentId="main-content" className="custom-menu">
+        <IonHeader className="menu-header">
           <IonToolbar>
-            <IonTitle size="large">Blank</IonTitle>
+            <IonTitle>Menu</IonTitle>
+            <IonButtons slot="end">
+              <IonMenuButton>
+                <IonIcon icon={closeOutline} />
+              </IonMenuButton>
+            </IonButtons>
           </IonToolbar>
         </IonHeader>
-      </IonContent>
-    </IonPage>
+        <IonContent className="menu-content">
+          <IonList className="menu-list">
+            <IonItem 
+              button 
+              className="menu-item"
+              onClick={() => scrollToSection('main')}
+            >
+              <IonIcon slot="start" icon={homeOutline} className="menu-icon" />
+              <IonLabel className="menu-label">Main Page</IonLabel>
+            </IonItem>
+            <IonItem 
+              button 
+              className="menu-item"
+              onClick={() => scrollToSection('projects')}
+            >
+              <IonIcon slot="start" icon={folderOpenOutline} className="menu-icon" />
+              <IonLabel className="menu-label">Projects</IonLabel>
+            </IonItem>
+            <IonItem 
+              button 
+              className="menu-item"
+              onClick={() => scrollToSection('education')}
+            >
+              <IonIcon slot="start" icon={schoolOutline} className="menu-icon" />
+              <IonLabel className="menu-label">Education</IonLabel>
+            </IonItem>
+          </IonList>
+        </IonContent>
+      </IonMenu>
+
+      <IonPage id="main-content">
+        <IonHeader>
+          <IonToolbar className="header-toolbar">
+            <IonButtons slot="start">
+              <IonMenuButton className="menu-button" />
+            </IonButtons>
+            <IonTitle className="header">Status Freelancing Student Projects</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+
+        <IonContent
+          fullscreen
+          style={{
+            '--background': '#23112b',
+            '--ion-background-color': '#052c3b'
+          }}
+        >
+          {/* Main Content Section with ref */}
+          <div ref={mainContentRef} className="home-content-wrapper">
+            {/* Left Sidebar / Label */}
+            <div className="left-label">
+              <h2>Greetings, I'm Arky Roel U. Balaga</h2>
+              <p>Exploring web technologies is my addiction</p>
+              <p>IT Student & Web Enthusiast</p>
+              <p>Student at Northern Bukidnon State College with a passion for web technologies. Enjoys creating projects and occasional freelance work.</p>
+            </div>
+
+            {/* Main content */}
+            <div className="main-content">
+              {/* Elegant Pocket Watch */}
+              <div className="pocket-watch">
+                <div className="outer-ring">
+                  <div className="date-top">
+                    {dayText.split("").map((char, i) => (
+                      <span key={i} style={{ transform: `rotate(${i * 10 - 60}deg)` }}>{char}</span>
+                    ))}
+                  </div>
+                  <div className="year-bottom">{yearText}</div>
+                </div>
+
+                <div className="watch-face">
+                  {/* Numbers 1–12 */}
+                  {[...Array(12)].map((_, i) => (
+                    <div key={i} className={`number number${i + 1}`}>{i + 1}</div>
+                  ))}
+
+                  {/* Minute/second ticks */}
+                  {[...Array(60)].map((_, i) => (
+                    <div
+                      key={`tick-${i}`}
+                      className="tick"
+                      style={{ transform: `rotate(${i * 6}deg)` }}
+                    />
+                  ))}
+
+                  {/* Clock hands */}
+                  <div className="hand hour" style={{ transform: `translate(-50%, -100%) rotate(${hourRotation}deg)` }}></div>
+                  <div className="hand minute" style={{ transform: `translate(-50%, -100%) rotate(${minuteRotation}deg)` }}></div>
+                  <div className="hand second" style={{ transform: `translate(-50%, -100%) rotate(${secondRotation}deg)` }}></div>
+                </div>
+
+              </div>
+
+              {/* Avatar & Status */}
+              <div className="avatar-status-container">
+                <div className="avatar-wrapper">
+                  <Avatar />
+                  <div className="status-card-wrapper">
+                    <Status />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Projects Section with ref */}
+          <IonContent
+            ref={projectsRef}
+            className="projects-section"
+            style={{
+              '--background': '#23112b',
+              '--ion-background-color': '#23112b'
+            }}
+          >
+            <div className="projects-container">
+              <h2 className="projects-title">Projects</h2>
+              <h3 className="projects-subtitle">Sockdrawer</h3>
+              <div className="projects-list">
+                {projectsData.map((project, index) => (
+                  <div
+                    key={index}
+                    className="project-item"
+                    onClick={() => openProjectModal(project)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <div className="project-info">
+                      <h3>{project.name}</h3>
+                      <p className="project-type">{project.type}</p>
+                      <p className="project-date">{project.date}</p>
+                    </div>
+
+                    {/* Render features if they exist */}
+                    {project.features && project.features.length > 0 && (
+                      <div className="coding-outlines">
+                        {project.features.map((feature, featureIndex) => (
+                          <div key={featureIndex} className="outline-item">
+                            <div className="outline-icon">
+                              <IonIcon icon={feature.icon} />
+                              <span className="tooltip">{feature.tooltip}</span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </IonContent>
+
+          {/* Education Section with ref */}
+          <IonContent
+            ref={educationRef}
+            className="education-section"
+            style={{
+              '--background': '#23112b',
+              '--ion-background-color': '#23112b'
+            }}
+          >
+            <div className="education-container">
+              <h2 className="education-title">Education</h2>
+              <div className="education-list">
+                {educationData.map((education, index) => (
+                  <div key={index} className="education-item">
+                    <h3>{education.level}</h3>
+                    <p className="education-school">{education.school}</p>
+                    <p className="education-status">{education.status}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </IonContent>
+
+          {/* Footer */}
+           <div className="footer">
+            <div className="footer-content">
+              <p>© 2025 Arky Roel U. Balaga. All Rights Reserved</p>
+              <div className="social-icons">
+                <a href="https://www.facebook.com/princess.psyche.501" target="_blank" rel="noopener noreferrer">
+                  <img src={facebook} alt="Facebook" className="social-icon" />
+                </a>
+                <a href="https://github.com/ArkDriveDev" target="_blank" rel="noopener noreferrer">
+                  <img src={github} alt="GitHub" className="social-icon" />
+                </a>
+                <a href="mailto:Arkyroel147@gmail.com">
+                  <img src={gmail} alt="Gmail" className="social-icon" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </IonContent>
+        
+        <Modal isOpen={isModalOpen} onClose={closeModal}>
+          {selectedProject && (
+            <>
+              <div className="modal-header">
+                <h2 className="modal-title">{selectedProject.name}</h2>
+                <p className="modal-subtitle">{selectedProject.type} - {selectedProject.date}</p>
+              </div>
+
+              <div className="modal-body">
+                <p className="modal-description">{selectedProject.description}</p>
+
+                <div className="modal-github-link">
+                  <img
+                    src={github}
+                    alt="GitHub"
+                    className="modal-github-img"
+                  />
+                  <a
+                    href={selectedProject.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    View on GitHub
+                  </a>
+                </div>
+
+                <div className="modal-technologies">
+                  <h3>Technologies Used:</h3>
+                  <div className="coding-outlines justify-center">
+                    {selectedProject.features.map((feature: any, index: number) => (
+                      <div key={index} className="outline-item">
+                        <div className="outline-icon">
+                          <IonIcon icon={feature.icon} />
+                          <span className="tooltip">{feature.tooltip}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+        </Modal>
+      </IonPage>
+    </>
   );
 };
 

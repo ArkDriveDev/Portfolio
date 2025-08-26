@@ -1,0 +1,71 @@
+/* Menu Styles */
+.custom-menu {
+  --width: 280px;
+  --background: rgba(27, 0, 39, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.menu-header {
+  --background: rgba(27, 0, 39, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-header ion-toolbar {
+  --background: transparent;
+}
+
+.menu-header ion-title {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.menu-content {
+  --background: transparent;
+}
+
+.menu-list {
+  background: transparent;
+  padding: 20px 0;
+}
+
+.menu-item {
+  --background: transparent;
+  --border-color: rgba(255, 255, 255, 0.1);
+  --padding-start: 20px;
+  --padding-end: 20px;
+  margin: 8px 0;
+}
+
+.menu-item:hover {
+  --background: rgba(255, 255, 255, 0.05);
+}
+
+.menu-icon {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 20px;
+  margin-right: 15px;
+}
+
+.menu-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* Menu button in header */
+.menu-button {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 24px;
+}
+
+/* Close button in menu */
+.menu-header ion-buttons ion-icon {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 24px;
+}

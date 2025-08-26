@@ -1,0 +1,90 @@
+/* ================= Left Label Styles ================= */
+.left-label {
+  position: absolute;
+  left: 40px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 450px;
+  max-width: 810px;
+  max-height: 650px;
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.left-label h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-top: 60px;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.left-label p {
+  font-size: 2.2rem;
+  margin-bottom: -20px;
+  color: rgba(221, 215, 215, 0.918);
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.left-label p:last-of-type {
+  margin-bottom: 0;
+  color: rgba(197, 195, 195, 0.7);
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .left-label {
+    max-width: 350px;
+    left: 30px;
+  }
+
+  .left-label h2 {
+    font-size: 2.2rem;
+  }
+
+  .left-label p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .left-label {
+    position: relative;
+    max-width: 80%;
+    margin: 40px auto;
+    left: 0;
+    top: 0;
+    transform: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .left-label h2 {
+    font-size: 2rem;
+  }
+
+  .left-label p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-label {
+    padding: 20px;
+    max-width: 90%;
+  }
+
+  .left-label h2 {
+    font-size: 1.8rem;
+  }
+}
