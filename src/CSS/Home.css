@@ -97,7 +97,7 @@
 /* Minute/second ticks */
 .tick {
   position: absolute;
-  top: 100%;
+  top: 101%;
   left: 50%;
   width: 2px;
   height: 5px;
@@ -160,8 +160,8 @@
 /* Numbers wrapper inside watch-face */
 .watch-face .number {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 46%;
+  left: 48%;
   transform-origin: 0 0;
   font-size: clamp(9px, calc(var(--watch-size) * 0.045), 14px);
   font-weight: 600;
