@@ -66,11 +66,15 @@
   height: 24px;
   transition: transform 0.3s ease, opacity 0.3s ease;
   opacity: 0.7;
+  /* Added subtle glow effect */
+  filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.3));
 }
 
 .social-icon:hover {
   transform: scale(1.2);
   opacity: 1;
+  /* Enhanced glow on hover */
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.5));
 }
 
 /* For smaller screens */
