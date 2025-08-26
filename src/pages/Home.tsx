@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import Avatar from '../components/Avatar';
 import Status from '../components/Status';
 import '../CSS/Home.css';
+import github from '../components/images/github.png';
 import {
   prismOutline,
   micCircleOutline,
@@ -12,7 +13,7 @@ import {
   peopleOutline,
   mapOutline
 } from 'ionicons/icons';
-import Modal from '../components/Moda';
+import Modal from '../components/Modal';
 
 const Home: React.FC = () => {
   const dayText = "Friday August 22";
@@ -233,7 +234,7 @@ const Home: React.FC = () => {
 
                 <div className="flex items-center mb-6">
                   <img
-                    src="../components/images/github.png"
+                    src={github}
                     alt="GitHub"
                     className="w-8 h-8 mr-3"
                   />
@@ -262,8 +263,6 @@ const Home: React.FC = () => {
                 </div>
               </>
             )}
-
-            {/* Add conditions for other projects if needed */}
           </div>
         )}
       </Modal>
