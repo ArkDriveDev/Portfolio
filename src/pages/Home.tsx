@@ -47,7 +47,7 @@ const Home: React.FC = () => {
       type: 'Personal Projects',
       date: 'June 2025 - Present',
       description: 'A Holographic music app, using pepper\'s ghost illusion',
-      githubUrl: '#', // Add your actual GitHub URL here
+      githubUrl: 'https://github.com/ArkDriveDev/Somachord', // Add your actual GitHub URL here
       features: [
         { icon: codeSlashOutline, tooltip: 'App Development' },
         { icon: prismOutline, tooltip: 'Pepper\'s Ghost Illusion' },
@@ -59,8 +59,8 @@ const Home: React.FC = () => {
       name: 'Cephaline-Supabase',
       type: 'Northern Bukidnon State College',
       date: 'May 2025 - Present',
-      description: 'Your project description here', // Add description
-      githubUrl: '#', // Add GitHub URL
+      description: 'A Coding Journal App that can document mood and learnings', // Add description
+      githubUrl: 'https://github.com/ArkDriveDev/Cephaline-Supabase', // Add GitHub URL
       features: [
         { icon: codeSlashOutline, tooltip: 'App Development' },
         { icon: bookOutline, tooltip: 'Coding Journal' }
@@ -70,8 +70,8 @@ const Home: React.FC = () => {
       name: 'IT35-lab',
       type: 'Northern Bukidnon State College',
       date: 'April 2025 - Present',
-      description: 'Your project description here', // Add description
-      githubUrl: '#', // Add GitHub URL
+      description: 'A social media app that can post feeds with images and emojis', // Add description
+      githubUrl: 'https://github.com/ArkDriveDev/it35-lab', // Add GitHub URL
       features: [
         { icon: codeSlashOutline, tooltip: 'App Development' },
         { icon: peopleOutline, tooltip: 'Social Media App' }
@@ -81,11 +81,11 @@ const Home: React.FC = () => {
       name: 'IT24A',
       type: 'Northern Bukidnon State College',
       date: 'October 2024 - Present',
-      description: 'Your project description here', // Add description
-      githubUrl: '#', // Add GitHub URL
+      description: 'A leaflet map and open weather API exploring project', // Add description
+      githubUrl: 'https://github.com/ArkDriveDev/IT24A', // Add GitHub URL
       features: [
         { icon: codeSlashOutline, tooltip: 'Web Development' },
-        { icon: mapOutline, tooltip: 'Geolocator / Mapping' }
+        { icon: mapOutline, tooltip: 'Geolocation / Mapping' }
       ]
     }
   ];
