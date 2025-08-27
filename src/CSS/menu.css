@@ -1,20 +1,25 @@
-/* Menu Styles - Fixed with explicit values */
+/* =========================
+   Menu Styles (Purple Theme)
+   ========================= */
+
+/* Main menu container */
 .custom-menu {
-  width: 280px;
-  background: rgba(27, 0, 39, 0.95) !important;
+  --width: 280px;
+  --background: rgba(27, 0, 39, 0.95); /* Purple tone */
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
 }
 
+/* Menu header */
 .menu-header {
-  background: rgba(27, 0, 39, 0.3) !important;
+  --background: rgba(27, 0, 39, 0.3);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .menu-header ion-toolbar {
-  background: transparent !important;
+  --background: transparent;
 }
 
 .menu-header ion-title {
@@ -24,33 +29,51 @@
   letter-spacing: 0.5px;
 }
 
-.menu-content {
-  background: transparent !important;
+/* Close button in header */
+.menu-header ion-buttons ion-icon {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 24px;
 }
 
+/* Menu content background */
+.menu-content {
+  --background: rgba(27, 0, 39, 0.95);
+  background: rgba(27, 0, 39, 0.95) !important;
+}
+
+/* Menu list background */
 .menu-list {
-  background: transparent;
+  --background: rgba(27, 0, 39, 0.95);
+  background: rgba(27, 0, 39, 0.95) !important;
   padding: 20px 0;
 }
 
+/* =========================
+   Menu Items
+   ========================= */
 .menu-item {
-  background: transparent !important;
-  border-color: rgba(255, 255, 255, 0.1) !important;
+  --ion-item-background: rgba(27, 0, 39, 0.95); /* Purple background */
+  --background: rgba(27, 0, 39, 0.95);
+  --border-color: rgba(255, 255, 255, 0.1);
   --padding-start: 20px;
   --padding-end: 20px;
   margin: 8px 0;
+  border-radius: 8px;
 }
 
 .menu-item:hover {
-  background: rgba(255, 255, 255, 0.05) !important;
+  --ion-item-background: rgba(255, 255, 255, 0.05);
+  --background: rgba(255, 255, 255, 0.05);
 }
 
+/* Icon inside item */
 .menu-icon {
   color: rgba(255, 255, 255, 0.7);
   font-size: 20px;
   margin-right: 15px;
 }
 
+/* Label inside item */
 .menu-label {
   color: rgba(255, 255, 255, 0.8);
   font-size: 16px;
@@ -58,37 +81,39 @@
   letter-spacing: 0.5px;
 }
 
-/* Menu button in header */
+/* =========================
+   Menu Button in App Header
+   ========================= */
 .menu-button {
   color: rgba(255, 255, 255, 0.7);
   font-size: 24px;
 }
 
-/* Close button in menu */
-.menu-header ion-buttons ion-icon {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 24px;
-}
-
-/* Additional styles to ensure proper display */
+/* =========================
+   Fallbacks for IonMenu internals
+   ========================= */
 ion-menu {
   --width: 280px;
   --background: rgba(27, 0, 39, 0.95);
 }
 
 ion-menu ion-content {
-  --background: transparent;
+  --background: rgba(27, 0, 39, 0.95);
+  background: rgba(27, 0, 39, 0.95) !important;
 }
 
 ion-menu ion-list {
-  background: transparent;
+  --background: rgba(27, 0, 39, 0.95);
+  background: rgba(27, 0, 39, 0.95) !important;
 }
 
 ion-menu ion-item {
-  --background: transparent;
+  --ion-item-background: rgba(27, 0, 39, 0.95);
+  --background: rgba(27, 0, 39, 0.95);
   --border-color: rgba(255, 255, 255, 0.1);
 }
 
 ion-menu ion-item:hover {
+  --ion-item-background: rgba(255, 255, 255, 0.05);
   --background: rgba(255, 255, 255, 0.05);
 }
